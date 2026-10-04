@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nahoa Life — Reels</title>
+<style>
+  :root { --bg:#F4EFE6; --ink:#4D4F3E; --accent:#A87651; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; background:var(--bg); color:var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; }
+  .wrap { position:relative; max-width:1100px; margin:0 auto; padding:16px 0 8px; }
+  .track {
+    display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding:4px 16px 16px; scroll-padding:16px; -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .track::-webkit-scrollbar { display:none; }
+  .slide { flex:0 0 min(340px, 86vw); scroll-snap-align:start; }
+  .slide .instagram-media { margin:0 !important; min-width:0 !important; width:100% !important; }
+  .nav { position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px;
+    border-radius:50%; border:0; background:var(--ink); color:#fff; font-size:22px;
+    cursor:pointer; opacity:.9; display:flex; align-items:center; justify-content:center; z-index:2; }
+  .nav:hover { opacity:1; }
+  .prev { left:-6px; } .next { right:-6px; }
+  .nav[disabled] { opacity:.25; cursor:default; }
+  .dots { display:flex; justify-content:center; gap:8px; padding:4px 0 12px; }
+  .dots button { width:9px; height:9px; border-radius:50%; border:0; padding:0;
+    background:#CFC4B2; cursor:pointer; }
+  .dots button.on { background:var(--accent); }
+  .more { display:block; text-align:center; color:var(--accent); font-weight:700;
+    text-decoration:none; padding-bottom:16px; }
+  @media (max-width:640px){ .nav{ display:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <button class="nav prev" aria-label="Previous reel">‹</button>
+  <div class="track" id="track">
+    <div class="slide"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Ddu0dNIgZan/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/Ddu0dNIgZan/">Watch on Instagram</a></blockquote></div>
+    <div class="slide"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Dbr6dXpjJ6c/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/Dbr6dXpjJ6c/">Watch on Instagram</a></blockquote></div>
+    <div class="slide"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DPU5-EMANE8/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DPU5-EMANE8/">Watch on Instagram</a></blockquote></div>
+    <div class="slide"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DL3jlbhgBbd/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DL3jlbhgBbd/">Watch on Instagram</a></blockquote></div>
+  </div>
+  <button class="nav next" aria-label="Next reel">›</button>
+</div>
+<div class="dots" id="dots"></div>
+<a class="more" href="https://www.instagram.com/nahoalife/" target="_blank" rel="noopener">More on Instagram @nahoalife →</a>
+
+<script async src="https://www.instagram.com/embed.js"></script>
+<script>
+  const track = document.getElementById('track');
+  const slides = [...track.children];
+  const dots = document.getElementById('dots');
+  const prev = document.querySelector('.prev'), next = document.querySelector('.next');
+  slides.forEach((s,i)=>{ const b=document.createElement('button'); b.setAttribute('aria-label','Reel '+(i+1));
+    b.onclick=()=>s.scrollIntoView({behavior:'smooth',inline:'start',block:'nearest'}); dots.appendChild(b); });
+  const step = () => slides[0].getBoundingClientRect().width + 16;
+  prev.onclick = () => track.scrollBy({left:-step(), behavior:'smooth'});
+  next.onclick = () => track.scrollBy({left: step(), behavior:'smooth'});
+  function update(){
+    const i = Math.round(track.scrollLeft / step());
+    [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));
+    prev.disabled = track.scrollLeft < 4;
+    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+  }
+  track.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update); update();
+</script>
+</body>
+</html>
