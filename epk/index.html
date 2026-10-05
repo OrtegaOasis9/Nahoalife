@@ -60,6 +60,9 @@
   .release h3 a { color:var(--accent); }
   .meta { color:var(--muted); font-size:15px; margin:6px 0 12px; }
   .release p { margin:0; color:var(--text); font-size:17px; }
+  .release.feature { grid-template-columns:1fr; gap:20px; }
+  .yt { position:relative; width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; background:#000; }
+  .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
   .release.small { grid-template-columns:120px 1fr; align-items:center; margin-bottom:0; padding-top:28px; border-top:1px solid var(--line); }
   .release.small h3 { font-size:22px; }
   @media (max-width:600px){
@@ -151,8 +154,8 @@
   <div class="wrap">
     <h2>Discography</h2>
 
-    <div class="release">
-      <img src="img/otv.jpg" alt="On The Verge cover art" loading="lazy">
+    <div class="release feature">
+      <div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/gnS0SjIQo30?rel=0&amp;playsinline=1" title="Nahoa Life — On The Verge (YouTube)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
       <div>
         <h3><a href="https://distrokid.com/hyperfollow/nahoalife/on-the-verge" target="_blank" rel="noopener">On The Verge</a></h3>
         <div class="meta">Single · September 17, 2026</div>
