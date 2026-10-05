@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nahoa Life — Electronic Press Kit</title>
+<meta name="description" content="Nahoa Life — rapper, singer, producer, and pianist from LA. Bio, music, videos, and booking.">
+<meta property="og:title" content="Nahoa Life — Electronic Press Kit">
+<meta property="og:description" content="Thoughtful hip-hop colored by folk and jazz. Bio, music, videos, and booking.">
+<meta property="og:image" content="img/otv.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#121212; --panel:#1B1A22; --purple:#4C297C; --purple-2:#3B2263;
+    --accent:#8A9CF2; --text:#ECECF1; --muted:#B4B4C2; --line:#2A2933;
+    --w:min(320px, 68vw); --gap:20px;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    font-size:18px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .wrap { max-width:760px; margin:0 auto; padding:0 20px; }
+  section { padding:64px 0; border-top:1px solid var(--line); }
+  h2 { font-family:Oswald, sans-serif; font-weight:600; font-size:clamp(30px, 5vw, 40px); letter-spacing:.02em;
+    text-transform:uppercase; margin:0 0 24px; color:#fff; }
+
+  /* Nav */
+  nav { position:sticky; top:0; z-index:20; background:rgba(18,18,18,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  nav .wrap { display:flex; gap:22px; overflow-x:auto; padding-top:14px; padding-bottom:14px; scrollbar-width:none; }
+  nav .wrap::-webkit-scrollbar { display:none; }
+  nav a { color:var(--muted); font-size:14px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; }
+  nav a:hover { color:#fff; text-decoration:none; }
+
+  /* Hero */
+  .hero { background:linear-gradient(180deg, var(--purple) 0, var(--purple) 46%, var(--bg) 46%); padding:56px 0 40px; border:0; }
+  .hero .wrap { text-align:center; }
+  .hero-photo { width:min(300px, 72vw); aspect-ratio:4/5; margin:0 auto 28px; border-radius:14px;
+    background:var(--purple-2); border:2px dashed rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center;
+    color:rgba(255,255,255,.45); font-size:14px; letter-spacing:.08em; text-transform:uppercase; }
+  .hero h1 { font-family:Oswald, sans-serif; font-weight:600; font-size:clamp(52px, 12vw, 88px); line-height:1; margin:0;
+    color:var(--accent); letter-spacing:.02em; text-transform:uppercase; }
+  .hero .tag { font-weight:700; letter-spacing:.14em; text-transform:uppercase; font-size:14px; color:#fff; margin:12px 0 22px; }
+  .links { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
+  .btn { display:inline-block; padding:11px 20px; border-radius:999px; font-weight:700; font-size:15px; }
+  .btn.solid { background:var(--accent); color:#121212; }
+  .btn.ghost { border:1.5px solid var(--accent); color:var(--accent); }
+  .btn:hover { text-decoration:none; opacity:.9; }
+
+  /* Bio */
+  .bio p { margin:0; color:var(--text); font-size:clamp(18px, 2.4vw, 21px); line-height:1.7; }
+
+  /* Discography */
+  .release { display:grid; grid-template-columns:200px 1fr; gap:28px; align-items:start; margin-bottom:44px; }
+  .release img { width:100%; aspect-ratio:1; object-fit:cover; border-radius:10px; display:block; }
+  .release h3 { margin:0; font-size:26px; line-height:1.2; }
+  .release h3 a { color:var(--accent); }
+  .meta { color:var(--muted); font-size:15px; margin:6px 0 12px; }
+  .release p { margin:0; color:var(--text); font-size:17px; }
+  .release.small { grid-template-columns:120px 1fr; align-items:center; margin-bottom:0; padding-top:28px; border-top:1px solid var(--line); }
+  .release.small h3 { font-size:22px; }
+  @media (max-width:600px){
+    .release { grid-template-columns:1fr; gap:16px; }
+    .release img { max-width:260px; }
+    .release.small { grid-template-columns:96px 1fr; gap:16px; }
+  }
+
+  /* Videos carousel */
+  .videos { padding-left:0; padding-right:0; }
+  .stage { position:relative; overflow:hidden; padding:6px 0 4px; }
+  .track { display:flex; gap:var(--gap); align-items:center; transition:transform .45s ease; }
+  .slide { position:relative; flex:0 0 var(--w); aspect-ratio:9/16; border-radius:14px; overflow:hidden; background:#000;
+    transform:scale(.84); opacity:.4; transition:transform .45s ease, opacity .45s ease; }
+  .slide.active { transform:scale(1); opacity:1; box-shadow:0 12px 34px rgba(0,0,0,.5); }
+  .slide video { width:100%; height:100%; object-fit:contain; display:block; background:#000; }
+  .shield { position:absolute; inset:0; z-index:3; cursor:pointer; }
+  .slide.active .shield { display:none; }
+  .play { position:absolute; inset:0; z-index:2; display:flex; align-items:center; justify-content:center; border:0; background:transparent; cursor:pointer; }
+  .play span { width:72px; height:72px; border-radius:50%; background:rgba(255,255,255,.9); display:flex; align-items:center; justify-content:center; }
+  .play span::before { content:""; margin-left:6px; border-left:22px solid var(--purple); border-top:14px solid transparent; border-bottom:14px solid transparent; }
+  .slide.playing .play, .slide:not(.active) .play { display:none; }
+  .nav-btn { position:absolute; top:50%; transform:translateY(-50%); z-index:5; width:46px; height:46px; border-radius:50%; border:0;
+    background:var(--purple); color:#fff; font-size:24px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 2px 10px rgba(0,0,0,.4); }
+  .prev { left:calc(50% - var(--w)/2 - 66px); }
+  .next { right:calc(50% - var(--w)/2 - 66px); }
+  .nav-btn[disabled] { opacity:.25; cursor:default; }
+  @media (max-width:520px){ .prev{ left:6px; } .next{ right:6px; } .nav-btn{ width:40px; height:40px; } }
+  .dots { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; padding:16px 0 4px; }
+  .dots button { width:9px; height:9px; border-radius:50%; border:0; padding:0; background:#3A3A44; cursor:pointer; }
+  .dots button.on { background:var(--accent); }
+
+  /* Photos */
+  .grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; }
+  .grid div { aspect-ratio:4/5; border-radius:10px; background:var(--purple); }
+  .grid div:nth-child(even) { background:var(--purple-2); }
+  .grid div:first-child { grid-column:span 2; grid-row:span 2; aspect-ratio:auto; min-height:100%; }
+  @media (max-width:600px){ .grid div:first-child { grid-row:auto; aspect-ratio:16/11; } }
+  @media (max-width:600px){ .grid { grid-template-columns:repeat(2, 1fr); } }
+  .note { color:var(--muted); font-size:14px; margin-top:12px; }
+
+  /* Contact */
+  .contact dl { margin:0 0 28px; display:grid; grid-template-columns:auto 1fr; gap:10px 20px; }
+  .contact dt { color:var(--muted); font-size:15px; }
+  .contact dd { margin:0; }
+  footer { padding:32px 0 48px; color:var(--muted); font-size:13px; text-align:center; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-photo">Photo</div>
+    <h1>Nahoa Life</h1>
+    <div class="tag">Electronic Press Kit</div>
+    <div class="links">
+      <a class="btn solid" href="https://linktr.ee/Nahoalife" target="_blank" rel="noopener">Listen</a>
+      <a class="btn ghost" href="https://www.instagram.com/nahoalife/" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn ghost" href="#contact">Booking</a>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="Sections">
+  <div class="wrap">
+    <a href="#bio">Bio</a><a href="#music">Music</a><a href="#videos">Videos</a><a href="#photos">Photos</a><a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section id="bio" class="bio">
+  <div class="wrap">
+    <h2>Bio</h2>
+    <p>Nahoa Life is a rapper, singer, producer, and pianist from LA who creates a distinctive brand of thoughtful hip-hop colored by folk and jazz. He stays thoroughly original as an artist while being inspired by many such as Stevie Wonder, Andre 3000, Joni Mitchell, Kendrick Lamar, Smino, Pharrell, Quadeca, Mavi, Nina Simone, and The Roots. Nahoa is intentional about well-developed, beautiful music, whether the particular song is programmed or acoustic, high-energy or mellow, self-assured or pensive.</p>
+  </div>
+</section>
+
+<section id="music">
+  <div class="wrap">
+    <h2>Discography</h2>
+
+    <div class="release">
+      <img src="img/otv.jpg" alt="On The Verge cover art" loading="lazy">
+      <div>
+        <h3><a href="https://distrokid.com/hyperfollow/nahoalife/on-the-verge" target="_blank" rel="noopener">On The Verge</a></h3>
+        <div class="meta">Single · September 17, 2026</div>
+        <p>"On The Verge" is a melancholic, introspective song that captures the experience of resolutely moving toward greatness and success while bittersweetly moving away from home and comfort. There is calm singing and dynamic melodic rapping over live felt piano, trumpet, and guitar; it feels like a relaxing yet powerful current of water, or a coming-of-age movie. Even with triumphant trumpet and guitar solos at the end, the song is overall steady and soothing.</p>
+      </div>
+    </div>
+
+    <div class="release">
+      <img src="img/nitm.jpg" alt="Nice, in the Mean cover art" loading="lazy">
+      <div>
+        <h3><a href="https://distrokid.com/hyperfollow/nahoalife/nice-in-the-mean" target="_blank" rel="noopener">Nice, in the Mean</a></h3>
+        <div class="meta">Single · July 5, 2026</div>
+        <p>"Nice, in the Mean" is a clever, hard-hitting hip-hop track with unconventional drums and persistent, varied flows. There are multiple tasteful beat switches that help keep the song engaging, and there's a catchy hook that's the backbone and theme of the record. Lyrically, Nahoa explores how he'll eventually find peace with spiritual imagery and jazz references, but for now–"in the meantime"–he's focused on being as dope an MC as possible.</p>
+      </div>
+    </div>
+
+    <div class="release small">
+      <img src="img/sia.jpg" alt="Songs In Anticipation cover art" loading="lazy">
+      <div>
+        <h3><a href="https://linktr.ee/Nahoalife" target="_blank" rel="noopener">Songs In Anticipation</a></h3>
+        <div class="meta">Album · 13 tracks · September 12, 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="videos" class="videos">
+  <div class="wrap"><h2>Videos</h2></div>
+  <div class="stage" id="stage">
+    <button class="nav-btn prev" aria-label="Previous video">‹</button>
+    <div class="track" id="track"></div>
+    <button class="nav-btn next" aria-label="Next video">›</button>
+  </div>
+  <div class="dots" id="dots"></div>
+</section>
+
+<section id="photos">
+  <div class="wrap">
+    <h2>Photos</h2>
+    <div class="grid"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <p class="note">Press photos coming soon — full-resolution files in the press materials folder.</p>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <dl>
+      <dt>Booking &amp; Press</dt><dd><a href="mailto:nahoalifemusic@gmail.com">nahoalifemusic@gmail.com</a></dd>
+      <dt>Instagram</dt><dd><a href="https://www.instagram.com/nahoalife/" target="_blank" rel="noopener">@nahoalife</a></dd>
+      <dt>Links</dt><dd><a href="https://linktr.ee/Nahoalife" target="_blank" rel="noopener">linktr.ee/Nahoalife</a></dd>
+    </dl>
+    <a class="btn solid" href="https://drive.google.com/drive/folders/1cdk899kIUoo7vGgpSTGYplDwKj4yvVp1" target="_blank" rel="noopener">Download press materials</a>
+  </div>
+</section>
+
+<footer>© Nahoa Life</footer>
+
+<script>
+  // Video order set by Rosario
+  const VIDEOS = ['01-otv-promo','02-nim-vertical','03-friend-bridge-italy','04-overthink-bridge',
+                  '05-ae6','06-ae12-postprom','07-ae15','08-otv-first','09-jesus-trump'];
+  const MEDIA = '../reels/media/';
+  const stage = document.getElementById('stage'), track = document.getElementById('track'), dots = document.getElementById('dots');
+  const prev = document.querySelector('.prev'), next = document.querySelector('.next');
+  let current = 0;
+
+  const slides = VIDEOS.map((name, i) => {
+    const s = document.createElement('div');
+    s.className = 'slide';
+    s.innerHTML = `<video playsinline preload="none" poster="${MEDIA}${name}.jpg" src="${MEDIA}${name}.mp4"></video>
+      <button class="play" aria-label="Play video ${i + 1}"><span></span></button><div class="shield" aria-hidden="true"></div>`;
+    const v = s.querySelector('video');
+    s.querySelector('.play').onclick = () => { v.controls = true; v.play(); };
+    s.querySelector('.shield').onclick = () => go(i);
+    v.addEventListener('play', () => s.classList.add('playing'));
+    v.addEventListener('pause', () => s.classList.remove('playing'));
+    v.addEventListener('ended', () => { s.classList.remove('playing'); v.controls = false; });
+    track.appendChild(s);
+    const d = document.createElement('button'); d.setAttribute('aria-label', 'Video ' + (i + 1)); d.onclick = () => go(i); dots.appendChild(d);
+    return s;
+  });
+
+  function layout() {
+    const gap = parseFloat(getComputedStyle(track).gap) || 20, w = slides[0].offsetWidth;
+    track.style.transform = `translateX(${stage.clientWidth / 2 - (current * (w + gap) + w / 2)}px)`;
+    slides.forEach((s, i) => {
+      s.classList.toggle('active', i === current);
+      s.style.visibility = Math.abs(i - current) > 1 ? 'hidden' : 'visible';
+      if (Math.abs(i - current) <= 1) s.querySelector('video').preload = 'metadata';
+    });
+    [...dots.children].forEach((d, i) => d.classList.toggle('on', i === current));
+    prev.disabled = current === 0; next.disabled = current === slides.length - 1;
+  }
+  function go(i) {
+    if (i < 0 || i >= slides.length || i === current) return;
+    const v = slides[current].querySelector('video'); v.pause(); v.controls = false;
+    current = i; layout();
+  }
+  prev.onclick = () => go(current - 1);
+  next.onclick = () => go(current + 1);
+  let x0 = null;
+  stage.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive:true });
+  stage.addEventListener('touchend', e => {
+    if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) go(current + (dx < 0 ? 1 : -1)); x0 = null;
+  });
+  window.addEventListener('resize', layout);
+  layout();
+</script>
+</body>
+</html>
