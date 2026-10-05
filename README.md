@@ -1,5 +1,7 @@
 # Nahoa Life
 
-Web pieces for Nahoa Life's site.
+Nahoa Life EPK, live at https://epk.nahoalife.com
 
-- `reels/` — swipeable Instagram Reels carousel for the EPK.
+- `index.html` — the EPK (home page)
+- `reels/` — standalone video carousel + video files
+- `epk/` — cover images; `/epk/` forwards to the home page
