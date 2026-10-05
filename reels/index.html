@@ -3,30 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nahoa Life — Reels</title>
+<title>Nahoa Life — Videos</title>
 <style>
-  :root { --bg:#F4EFE6; --ink:#4D4F3E; --accent:#A87651; --w:min(340px, 70vw); --gap:20px; }
+  :root { --bg:#F4EFE6; --ink:#4D4F3E; --accent:#A87651; --w:min(320px, 68vw); --gap:20px; }
   * { box-sizing:border-box; }
   html,body { margin:0; background:var(--bg); color:var(--ink);
     font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; }
   .stage { position:relative; overflow:hidden; padding:16px 0 8px; }
-  .track { display:flex; gap:var(--gap); align-items:flex-start;
-    transition:transform .45s ease; will-change:transform; }
-  .slide { position:relative; flex:0 0 var(--w); transition:transform .45s ease, opacity .45s ease;
-    transform:scale(.86); opacity:.45; transform-origin:top center; }
-  .slide.active { transform:scale(1); opacity:1; }
-  .slide .instagram-media { margin:0 !important; min-width:0 !important; width:100% !important; }
-  /* Shield: blocks playback on preview slides; clicking it moves to that reel */
+  .track { display:flex; gap:var(--gap); align-items:center; transition:transform .45s ease; }
+  .slide { position:relative; flex:0 0 var(--w); aspect-ratio:9/16; border-radius:14px; overflow:hidden;
+    background:#111; transform:scale(.84); opacity:.45; transition:transform .45s ease, opacity .45s ease; }
+  .slide.active { transform:scale(1); opacity:1; box-shadow:0 10px 30px rgba(0,0,0,.18); }
+  .slide video { width:100%; height:100%; object-fit:contain; display:block; background:#111; }
   .shield { position:absolute; inset:0; z-index:3; cursor:pointer; }
   .slide.active .shield { display:none; }
-  .nav { position:absolute; top:42%; z-index:5; width:46px; height:46px; border-radius:50%;
-    border:0; background:var(--ink); color:#fff; font-size:24px; line-height:1; cursor:pointer;
+  .play { position:absolute; inset:0; z-index:2; display:flex; align-items:center; justify-content:center;
+    border:0; background:transparent; cursor:pointer; }
+  .play span { width:72px; height:72px; border-radius:50%; background:rgba(255,255,255,.88);
+    display:flex; align-items:center; justify-content:center; }
+  .play span::before { content:""; margin-left:6px; border-left:22px solid var(--ink);
+    border-top:14px solid transparent; border-bottom:14px solid transparent; }
+  .slide.playing .play, .slide:not(.active) .play { display:none; }
+  .nav { position:absolute; top:50%; transform:translateY(-50%); z-index:5; width:46px; height:46px;
+    border-radius:50%; border:0; background:var(--ink); color:#fff; font-size:24px; line-height:1; cursor:pointer;
     display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,.18); }
-  .prev { left:calc(50% - var(--w)/2 - 62px); }
-  .next { right:calc(50% - var(--w)/2 - 62px); }
+  .prev { left:calc(50% - var(--w)/2 - 64px); }
+  .next { right:calc(50% - var(--w)/2 - 64px); }
   .nav[disabled] { opacity:.25; cursor:default; }
   @media (max-width:520px){ .prev{ left:6px; } .next{ right:6px; } .nav{ width:40px; height:40px; } }
-  .dots { display:flex; justify-content:center; gap:8px; padding:6px 0 12px; }
+  .dots { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; padding:8px 0 12px; }
   .dots button { width:9px; height:9px; border-radius:50%; border:0; padding:0; background:#CFC4B2; cursor:pointer; }
   .dots button.on { background:var(--accent); }
   .more { display:block; text-align:center; color:var(--accent); font-weight:700; text-decoration:none; padding-bottom:16px; }
@@ -34,49 +39,53 @@
 </head>
 <body>
 <div class="stage" id="stage">
-  <button class="nav prev" aria-label="Previous reel">‹</button>
-  <div class="track" id="track">
-    <div class="slide"><div class="shield"></div><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Ddu0dNIgZan/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/Ddu0dNIgZan/">Watch on Instagram</a></blockquote></div>
-    <div class="slide"><div class="shield"></div><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Dbr6dXpjJ6c/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/Dbr6dXpjJ6c/">Watch on Instagram</a></blockquote></div>
-    <div class="slide"><div class="shield"></div><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DPU5-EMANE8/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DPU5-EMANE8/">Watch on Instagram</a></blockquote></div>
-    <div class="slide"><div class="shield"></div><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DL3jlbhgBbd/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DL3jlbhgBbd/">Watch on Instagram</a></blockquote></div>
-  </div>
-  <button class="nav next" aria-label="Next reel">›</button>
+  <button class="nav prev" aria-label="Previous video">‹</button>
+  <div class="track" id="track"></div>
+  <button class="nav next" aria-label="Next video">›</button>
 </div>
 <div class="dots" id="dots"></div>
 <a class="more" href="https://www.instagram.com/nahoalife/" target="_blank" rel="noopener">More on Instagram @nahoalife →</a>
 
-<script async src="https://www.instagram.com/embed.js"></script>
 <script>
-  const stage = document.getElementById('stage');
-  const track = document.getElementById('track');
-  const slides = [...track.children];
+  // Order set by Rosario
+  const VIDEOS = [
+    '01-otv-promo', '02-nim-vertical', '03-friend-bridge-italy', '04-overthink-bridge',
+    '05-ae6', '06-ae12-postprom', '07-ae15', '08-otv-first', '09-jesus-trump'
+  ];
+  const stage = document.getElementById('stage'), track = document.getElementById('track');
   const dots = document.getElementById('dots');
   const prev = document.querySelector('.prev'), next = document.querySelector('.next');
   let current = 0;
 
-  slides.forEach((s, i) => {
+  const slides = VIDEOS.map((name, i) => {
+    const s = document.createElement('div');
+    s.className = 'slide';
+    s.innerHTML = `<video playsinline preload="none" poster="media/${name}.jpg" src="media/${name}.mp4"></video>
+      <button class="play" aria-label="Play video ${i + 1}"><span></span></button>
+      <div class="shield" aria-hidden="true"></div>`;
+    const v = s.querySelector('video');
+    s.querySelector('.play').onclick = () => { v.controls = true; v.play(); };
+    s.querySelector('.shield').onclick = () => go(i);
+    v.addEventListener('play', () => s.classList.add('playing'));
+    v.addEventListener('pause', () => s.classList.remove('playing'));
+    v.addEventListener('ended', () => { s.classList.remove('playing'); v.controls = false; });
+    track.appendChild(s);
     const d = document.createElement('button');
-    d.setAttribute('aria-label', 'Reel ' + (i + 1));
+    d.setAttribute('aria-label', 'Video ' + (i + 1));
     d.onclick = () => go(i);
     dots.appendChild(d);
-    s.querySelector('.shield').onclick = () => go(i);
+    return s;
   });
-
-  // Reloading an embed's iframe is the only reliable way to stop an Instagram video
-  function stop(slide) {
-    const f = slide.querySelector('iframe');
-    if (f) { const src = f.src; f.src = 'about:blank'; f.src = src; }
-  }
 
   function layout() {
     const gap = parseFloat(getComputedStyle(track).gap) || 20;
-    const slideW = slides[0].offsetWidth;
-    const offset = stage.clientWidth / 2 - (current * (slideW + gap) + slideW / 2);
-    track.style.transform = `translateX(${offset}px)`;
+    const w = slides[0].offsetWidth;
+    track.style.transform = `translateX(${stage.clientWidth / 2 - (current * (w + gap) + w / 2)}px)`;
     slides.forEach((s, i) => {
       s.classList.toggle('active', i === current);
       s.style.visibility = Math.abs(i - current) > 1 ? 'hidden' : 'visible';
+      // only load what's on screen
+      if (Math.abs(i - current) <= 1) s.querySelector('video').preload = 'metadata';
     });
     [...dots.children].forEach((d, i) => d.classList.toggle('on', i === current));
     prev.disabled = current === 0;
@@ -85,7 +94,8 @@
 
   function go(i) {
     if (i < 0 || i >= slides.length || i === current) return;
-    stop(slides[current]);
+    const v = slides[current].querySelector('video');
+    v.pause(); v.controls = false;
     current = i;
     layout();
   }
@@ -96,8 +106,6 @@
     if (e.key === 'ArrowRight') go(current + 1);
     if (e.key === 'ArrowLeft') go(current - 1);
   });
-
-  // Swipe (works on the preview areas and margins; the active video keeps its own touches)
   let x0 = null;
   stage.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
   stage.addEventListener('touchend', e => {
@@ -106,7 +114,6 @@
     if (Math.abs(dx) > 40) go(current + (dx < 0 ? 1 : -1));
     x0 = null;
   });
-
   window.addEventListener('resize', layout);
   layout();
 </script>
