@@ -7,7 +7,7 @@
 <meta name="description" content="Nahoa Life — rapper, singer, producer, and pianist from LA. Bio, music, videos, and booking.">
 <meta property="og:title" content="Nahoa Life — Electronic Press Kit">
 <meta property="og:description" content="Thoughtful hip-hop colored by folk and jazz. Bio, music, videos, and booking.">
-<meta property="og:image" content="https://epk.nahoalife.com/epk/img/otv.jpg">
+<meta property="og:image" content="https://epk.nahoalife.com/epk/img/photos/hero-7424.jpg">
 <link rel="canonical" href="https://epk.nahoalife.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,9 +39,8 @@
   /* Hero */
   .hero { background:linear-gradient(180deg, var(--purple) 0, var(--purple) 46%, var(--bg) 46%); padding:56px 0 40px; border:0; }
   .hero .wrap { text-align:center; }
-  .hero-photo { width:min(300px, 72vw); aspect-ratio:4/5; margin:0 auto 28px; border-radius:14px;
-    background:var(--purple-2); border:2px dashed rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center;
-    color:rgba(255,255,255,.45); font-size:14px; letter-spacing:.08em; text-transform:uppercase; }
+  .hero-photo { display:block; width:min(320px, 74vw); aspect-ratio:4/5; margin:0 auto 28px; border-radius:14px;
+    height:auto; object-fit:cover; object-position:50% 62%; box-shadow:0 14px 40px rgba(0,0,0,.45); }
   .hero h1 { font-family:Oswald, sans-serif; font-weight:600; font-size:clamp(52px, 12vw, 88px); line-height:1; margin:0;
     color:var(--accent); letter-spacing:.02em; text-transform:uppercase; }
   .hero .tag { font-weight:700; letter-spacing:.14em; text-transform:uppercase; font-size:14px; color:#fff; margin:12px 0 22px; }
@@ -98,12 +97,11 @@
   .dots button.on { background:var(--accent); }
 
   /* Photos */
-  .grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; }
-  .grid div { aspect-ratio:4/5; border-radius:10px; background:var(--purple); }
-  .grid div:nth-child(even) { background:var(--purple-2); }
-  .grid div:first-child { grid-column:span 2; grid-row:span 2; aspect-ratio:auto; min-height:100%; }
-  @media (max-width:600px){ .grid div:first-child { grid-row:auto; aspect-ratio:16/11; } }
-  @media (max-width:600px){ .grid { grid-template-columns:repeat(2, 1fr); } }
+  .collage { columns:3 220px; column-gap:12px; }
+  .collage a { display:block; break-inside:avoid; margin-bottom:12px; border-radius:10px; overflow:hidden; background:var(--purple-2); }
+  .collage img { display:block; width:100%; height:auto; transition:transform .4s ease; }
+  .collage a:hover img { transform:scale(1.03); }
+  @media (max-width:600px){ .collage { columns:2; column-gap:10px; } .collage a { margin-bottom:10px; } }
   .note { color:var(--muted); font-size:14px; margin-top:12px; }
 
   /* Contact */
@@ -117,7 +115,7 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="hero-photo">Photo</div>
+    <img class="hero-photo" src="epk/img/photos/hero-7424.jpg" alt="Nahoa Life in his studio" width="1067" height="1600" fetchpriority="high">
     <h1>Nahoa Life</h1>
     <div class="tag">Electronic Press Kit</div>
     <div class="links">
@@ -186,8 +184,8 @@
 <section id="photos">
   <div class="wrap">
     <h2>Photos</h2>
-    <div class="grid"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-    <p class="note">Press photos coming soon — full-resolution files in the press materials folder.</p>
+    <div class="collage"><a href="epk/img/photos/colors.jpg" target="_blank" rel="noopener"><img src="epk/img/photos/colors.jpg" alt="Nahoa Life photo" loading="lazy"></a><a href="epk/img/photos/7360.jpg" target="_blank" rel="noopener"><img src="epk/img/photos/7360.jpg" alt="Nahoa Life photo" loading="lazy"></a><a href="epk/img/photos/7395.jpg" target="_blank" rel="noopener"><img src="epk/img/photos/7395.jpg" alt="Nahoa Life photo" loading="lazy"></a><a href="epk/img/photos/7569.jpg" target="_blank" rel="noopener"><img src="epk/img/photos/7569.jpg" alt="Nahoa Life photo" loading="lazy"></a><a href="epk/img/photos/7511.jpg" target="_blank" rel="noopener"><img src="epk/img/photos/7511.jpg" alt="Nahoa Life photo" loading="lazy"></a><a href="epk/img/photos/7434.jpg" target="_blank" rel="noopener"><img src="epk/img/photos/7434.jpg" alt="Nahoa Life photo" loading="lazy"></a><a href="epk/img/photos/7528.jpg" target="_blank" rel="noopener"><img src="epk/img/photos/7528.jpg" alt="Nahoa Life photo" loading="lazy"></a><a href="epk/img/photos/7570.jpg" target="_blank" rel="noopener"><img src="epk/img/photos/7570.jpg" alt="Nahoa Life photo" loading="lazy"></a><a href="epk/img/photos/bed.jpg" target="_blank" rel="noopener"><img src="epk/img/photos/bed.jpg" alt="Nahoa Life photo" loading="lazy"></a></div>
+    <p class="note">Tap any photo to view it larger. High-resolution files are in the press materials folder.</p>
   </div>
 </section>
 
