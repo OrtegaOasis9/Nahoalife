@@ -1,6 +1,6 @@
 /**
  * Nahoa Life — website forms → this Google Sheet.
- *  - /music "join my community" → tab "Signups"
+ *  - /music "join my community" → tab "Community"
  *  - /content UGC inquiries      → tab "UGC Inquiries" + email alert to nahoacontent@gmail.com
  *  - /feature Get Featured       → tab "Feature Requests" + email alert to nahoalifemusic@gmail.com
  * After pasting: Deploy › Manage deployments › ✏️ › Version: New version › Deploy (keeps the same URL).
@@ -8,7 +8,7 @@
 const ALERT_EMAIL = 'nahoacontent@gmail.com';
 const FEATURE_EMAIL = 'nahoalifemusic@gmail.com';
 const TABS = {
-  signup: { name: 'Signups', headers: ['Timestamp', 'First name', 'Phone', 'Email', 'City', 'Instagram', 'Consent', 'Consent text', 'Page'] },
+  signup: { name: 'Community', headers: ['Timestamp', 'First name', 'Phone', 'Email', 'City', 'Instagram', 'Consent', 'Consent text', 'Page'] },
   ugc:    { name: 'UGC Inquiries', headers: ['Timestamp', 'Name', 'Brand', 'Email', 'Content type', 'Timeline', 'Message', 'Status', 'Page'] },
   feature:{ name: 'Feature Requests', headers: ['Timestamp', 'Type', 'Name', 'Email', 'Role', 'Artist / project', 'Date', 'Link', 'Message', 'Status', 'Page'] }
 };
