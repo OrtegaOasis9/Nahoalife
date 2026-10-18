@@ -153,7 +153,7 @@
     </div>
   </article>
 
-  <section class="join" id="join" aria-labelledby="joinTitle" hidden>
+  <section class="join" id="community" aria-labelledby="joinTitle" hidden>
     <h2 id="joinTitle">join my <span class="serif">community</span></h2>
     <p class="lede">Exclusive content, first word on shows, and new music before anyone else.</p>
     <button class="btn submit toggle" type="button" id="joinToggle" aria-expanded="false" aria-controls="joinForm">Tap in <span class="chev" aria-hidden="true">▾</span></button>
@@ -251,12 +251,12 @@
 
   /* community sign-up → Google Sheet (Apps Script web app) */
   const SIGNUP_URL = 'https://script.google.com/macros/s/AKfycbxL0BHtb4L_EjXdStrwhvAumnY3luFkCvBDZVB52rPBZU9LP-9K3WIHEGolrW03wFvlRA/exec'; // paste the Apps Script "Web app URL" here
-  if (SIGNUP_URL) document.getElementById('join').hidden = false; // stays hidden until the sheet is connected
+  if (SIGNUP_URL) document.getElementById('community').hidden = false; // stays hidden until the sheet is connected
   const form = document.getElementById('joinForm'), msg = document.getElementById('joinMsg');
   const tog = document.getElementById('joinToggle');
   function openJoin() { form.hidden = false; tog.setAttribute('aria-expanded', 'true'); }
   if (/^#(join|community)$/.test(location.hash) || new URLSearchParams(location.search).has('join')) {
-    openJoin(); setTimeout(() => document.getElementById('join').scrollIntoView({ behavior: 'smooth', block: 'start' }), 250);
+    openJoin(); setTimeout(() => document.getElementById('community').scrollIntoView({ behavior: 'smooth', block: 'start' }), 250);
   }
   tog.addEventListener('click', () => {
     const open = form.hidden; form.hidden = !open; tog.setAttribute('aria-expanded', String(open));
@@ -280,7 +280,7 @@
     const btn = form.querySelector('.submit'); btn.disabled = true; btn.textContent = 'Joining…'; say('');
     try {
       if (SIGNUP_URL) await fetch(SIGNUP_URL, { method: 'POST', mode: 'no-cors', body: data });
-      document.getElementById('join').innerHTML = '<div class="done"><h2>you\u2019re <span class="serif">in.</span></h2><p>Welcome to the community' + (f.first_name.value.trim() ? ', ' + f.first_name.value.trim().replace(/[<>&]/g, '') : '') + '. Watch for a text or email from Nahoa soon.</p></div>';
+      document.getElementById('community').innerHTML = '<div class="done"><h2>you\u2019re <span class="serif">in.</span></h2><p>Welcome to the community' + (f.first_name.value.trim() ? ', ' + f.first_name.value.trim().replace(/[<>&]/g, '') : '') + '. Watch for a text or email from Nahoa soon.</p></div>';
     } catch (err) {
       btn.disabled = false; btn.textContent = 'Join →'; say('Something went wrong. Please try again.', 1);
     }
