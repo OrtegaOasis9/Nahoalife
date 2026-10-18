@@ -56,7 +56,7 @@
   .more a span { font-family:'DM Mono', monospace; font-weight:500; font-size:13px; opacity:.7; }
   .more a.hot { background:var(--cherry); border-color:var(--cherry); color:#fff; }
   /* community sign-up */
-  .join { margin-top:34px; padding:18px 20px; border-radius:24px; background:var(--butter); color:var(--ink); }
+  .join { scroll-margin-top:16px; margin-top:34px; padding:18px 20px; border-radius:24px; background:var(--butter); color:var(--ink); }
   .join h2 { margin:0; font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:30px; line-height:1; letter-spacing:-.03em; text-transform:none; color:var(--ink); }
   .join h2 .serif { font-size:34px; letter-spacing:-.01em; }
   .join .lede { margin:6px 0 0; font-size:15px; }
@@ -254,6 +254,10 @@
   if (SIGNUP_URL) document.getElementById('join').hidden = false; // stays hidden until the sheet is connected
   const form = document.getElementById('joinForm'), msg = document.getElementById('joinMsg');
   const tog = document.getElementById('joinToggle');
+  function openJoin() { form.hidden = false; tog.setAttribute('aria-expanded', 'true'); }
+  if (/^#(join|community)$/.test(location.hash) || new URLSearchParams(location.search).has('join')) {
+    openJoin(); setTimeout(() => document.getElementById('join').scrollIntoView({ behavior: 'smooth', block: 'start' }), 250);
+  }
   tog.addEventListener('click', () => {
     const open = form.hidden; form.hidden = !open; tog.setAttribute('aria-expanded', String(open));
     if (open) document.getElementById('j-name').focus({ preventScroll: true });
