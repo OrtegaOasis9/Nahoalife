@@ -60,3 +60,6 @@ function append_(tab, row) {
 
 function doGet() { return reply_(); }
 function reply_() { return ContentService.createTextOutput('{"ok":true}').setMimeType(ContentService.MimeType.JSON); }
+
+/** Run this once from the editor (pick "authorize" in the toolbar, then ▶ Run) to approve sending email. */
+function authorize() { Logger.log('Emails left today: ' + MailApp.getRemainingDailyQuota()); }
