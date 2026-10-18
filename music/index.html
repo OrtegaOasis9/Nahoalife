@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nahoa Life — Music</title>
+<meta name="description" content="Stream Nahoa Life everywhere: On The Verge, Nice, in the Mean, and Songs In Anticipation.">
+<link rel="canonical" href="https://www.nahoalife.com/music/">
+<meta property="og:title" content="Nahoa Life — Music">
+<meta property="og:description" content="Rapper-songwriter, singer, and producer from LA. Stream everywhere.">
+<meta property="og:image" content="https://www.nahoalife.com/music/img/bed.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#F1ECE2; --ink:#151515; --cobalt:#2341C9; --butter:#F3D36B; --cherry:#C8322B; --night:#14110F; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--night); color:var(--paper); font-family:'Bricolage Grotesque', system-ui, sans-serif; font-size:17px; line-height:1.5; }
+  a { color:inherit; }
+  .mono { font-family:'DM Mono', ui-monospace, monospace; }
+  .serif { font-family:'Instrument Serif', Georgia, serif; font-style:italic; font-weight:400; }
+
+  /* soft, blurred backdrop of the bed photo behind everything */
+  .bg { position:fixed; inset:-6%; z-index:0; background:url(img/bed.jpg) 30% 50% / cover no-repeat; filter:blur(36px) saturate(1.2) brightness(.45); transform:scale(1.1); }
+  .page { position:relative; z-index:1; max-width:560px; margin:0 auto; padding:18px 16px 48px; }
+
+  .top { display:flex; justify-content:space-between; align-items:center; font-size:13px; }
+  .top a { text-decoration:none; opacity:.85; }
+
+  .photo { margin:18px 0 0; border-radius:26px; overflow:hidden; aspect-ratio:4/3.2; background:#000; box-shadow:0 24px 60px rgba(0,0,0,.5); }
+  .photo img { display:block; width:100%; height:100%; object-fit:cover; object-position:30% 52%; }
+  h1 { margin:22px 0 4px; font-weight:800; font-size:64px; line-height:.9; letter-spacing:-.04em; }
+  h1 .serif { color:var(--butter); letter-spacing:-.02em; }
+  .bio { margin:10px 0 0; color:#D8D0C2; }
+
+  .socials { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 6px; }
+  .socials a { display:inline-flex; align-items:center; min-height:44px; padding:0 14px; border-radius:999px; border:1.5px solid rgba(241,236,226,.35); font-size:13px; text-decoration:none; background:rgba(255,255,255,.04); }
+  .socials a:hover { background:var(--paper); color:var(--ink); }
+
+  h2 { margin:34px 0 14px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#BDB4A5; font-family:'DM Mono', monospace; font-weight:500; }
+  .release { display:flex; gap:14px; align-items:center; padding:12px; border-radius:20px; background:rgba(241,236,226,.07); border:1px solid rgba(241,236,226,.12); margin-bottom:12px; }
+  .release.big { flex-direction:column; align-items:stretch; padding:14px; background:var(--paper); color:var(--ink); border:0; }
+  .release img { width:84px; height:84px; border-radius:12px; object-fit:cover; flex:0 0 84px; }
+  .release.big img { width:100%; height:auto; aspect-ratio:1; flex:none; border-radius:14px; }
+  .release .info { min-width:0; flex:1; }
+  .release h3 { margin:0; font-weight:800; font-size:22px; line-height:1.1; letter-spacing:-.02em; }
+  .release.big h3 { font-size:30px; }
+  .release .meta { margin:3px 0 0; font-size:12px; opacity:.75; }
+  .actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:6px; min-height:44px; padding:0 18px; border-radius:999px; font-weight:800; font-size:15px; text-decoration:none; border:0; cursor:pointer; font-family:inherit; }
+  .btn.play { background:var(--butter); color:var(--ink); }
+  .btn.alt { background:transparent; color:inherit; border:1.5px solid currentColor; }
+  .release.big .btn.play { background:var(--cobalt); color:#fff; flex:1 1 160px; }
+
+  .more { display:grid; gap:10px; }
+  .more a { display:flex; align-items:center; justify-content:space-between; min-height:56px; padding:0 20px; border-radius:16px; background:rgba(241,236,226,.07); border:1px solid rgba(241,236,226,.12); text-decoration:none; font-weight:800; }
+  .more a span { font-family:'DM Mono', monospace; font-weight:500; font-size:13px; opacity:.7; }
+  .more a.hot { background:var(--cherry); border-color:var(--cherry); color:#fff; }
+  footer { margin-top:36px; text-align:center; font-size:12px; opacity:.6; }
+
+  /* platform picker */
+  dialog.listen { border:0; padding:0; border-radius:24px; width:min(420px, calc(100vw - 32px)); background:#F4EBDB; color:#1A1714; box-shadow:0 30px 80px rgba(0,0,0,.6); }
+  dialog.listen::backdrop { background:rgba(15,12,10,.7); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .listen-head { display:flex; gap:16px; align-items:center; padding:20px 20px 12px; }
+  .listen-head img { width:72px; height:72px; border-radius:12px; object-fit:cover; flex:0 0 72px; }
+  .listen-head h2 { margin:0; font-family:'Instrument Serif', Georgia, serif; font-style:italic; font-weight:400; font-size:30px; line-height:1; color:#1A1714; letter-spacing:0; text-transform:none; }
+  .listen-head p { margin:4px 0 0; font-size:13px; color:#5B5246; }
+  .listen-close { margin-left:auto; align-self:flex-start; width:44px; height:44px; border-radius:50%; border:0; background:transparent; font-size:26px; line-height:1; cursor:pointer; color:#1A1714; }
+  .platforms { list-style:none; margin:0; padding:8px 12px 18px; display:grid; gap:6px; max-height:calc(100vh - 170px); max-height:calc(100dvh - 170px); overflow-y:auto; }
+  .platforms a { display:flex; align-items:center; gap:14px; min-height:56px; padding:0 16px; border-radius:14px; background:#fff; color:#1A1714; text-decoration:none; font-weight:800; font-size:17px; }
+  .platforms a:hover { background:#1A1714; color:#F4EBDB; }
+  .platforms .dot { width:28px; height:28px; border-radius:8px; flex:0 0 28px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:13px; }
+  .platforms .go { margin-left:auto; font-family:'DM Mono', monospace; font-weight:500; font-size:13px; opacity:.7; }
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<main class="page">
+  <div class="top mono"><a href="/">nahoalife.com</a><a href="/epk/">press kit →</a></div>
+
+  <div class="photo"><img src="img/bed.jpg" alt="Nahoa Life sitting on his bed against a wall of posters" fetchpriority="high"></div>
+  <h1>nahoa <span class="serif">life</span></h1>
+  <p class="bio">Rapper-songwriter, singer, and producer from LA. Inspired by jazz, hip-hop, soul, folk, and philosophy.</p>
+
+  <nav class="socials mono" aria-label="Follow">
+    <a href="https://www.instagram.com/nahoalife/" target="_blank" rel="noopener">instagram</a>
+    <a href="https://tiktok.com/@nahoalife" target="_blank" rel="noopener">tiktok</a>
+    <a href="https://www.youtube.com/channel/UCMo8gesc1gno3fZucqBTzJQ" target="_blank" rel="noopener">youtube</a>
+    <a href="https://open.spotify.com/artist/5LLzJlWBJAGPFt5P1EKG1S" target="_blank" rel="noopener">spotify</a>
+    <a href="https://music.apple.com/us/artist/nahoa-life/1506373406" target="_blank" rel="noopener">apple music</a>
+    <a href="https://www.amazon.com/s?k=Nahoa+Life&amp;i=digital-music" target="_blank" rel="noopener">amazon</a>
+    <a href="https://www.facebook.com/NahoaLife/" target="_blank" rel="noopener">facebook</a>
+  </nav>
+
+  <h2>new single</h2>
+  <article class="release big">
+    <img src="img/otv.jpg" alt="On The Verge cover art">
+    <div class="info" style="margin-top:12px">
+      <h3>On The Verge</h3>
+      <p class="meta mono">single · Sept 17, 2026</p>
+      <div class="actions">
+        <button class="btn play" type="button" data-release="otv">▶ Listen</button>
+        <a class="btn alt" href="https://www.youtube.com/watch?v=gnS0SjIQo30" target="_blank" rel="noopener">Music video</a>
+        <a class="btn alt" href="/ontheverge/">Lyrics</a>
+      </div>
+    </div>
+  </article>
+
+  <h2>more music</h2>
+  <article class="release">
+    <img src="img/nitm.jpg" alt="Nice, in the Mean cover art" loading="lazy">
+    <div class="info">
+      <h3>Nice, in the Mean</h3>
+      <p class="meta mono">single · July 5, 2026</p>
+      <div class="actions"><button class="btn play" type="button" data-release="nitm">▶ Listen</button></div>
+    </div>
+  </article>
+  <article class="release">
+    <img src="img/sia.jpg" alt="Songs In Anticipation cover art" loading="lazy">
+    <div class="info">
+      <h3>Songs In Anticipation</h3>
+      <p class="meta mono">album · 13 tracks · Sept 12, 2025</p>
+      <div class="actions">
+        <button class="btn play" type="button" data-release="sia">▶ Listen</button>
+        <a class="btn alt" href="https://nahoalife.bandcamp.com/album/songs-in-anticipation-3" target="_blank" rel="noopener">Buy on Bandcamp</a>
+      </div>
+    </div>
+  </article>
+
+  <h2>more nahoa</h2>
+  <div class="more">
+    <a href="/epk/">Press kit <span>epk →</span></a>
+    <a href="/feature/" class="hot">Get featured <span>for artists &amp; labels →</span></a>
+  </div>
+
+  <footer class="mono">© nahoa life</footer>
+</main>
+
+<dialog class="listen" id="listenDlg" aria-labelledby="listenTitle">
+  <div class="listen-head">
+    <img id="dlgArt" src="" alt="">
+    <div><h2 id="listenTitle"></h2><p class="mono">Nahoa Life · choose your platform</p></div>
+    <button class="listen-close" type="button" aria-label="Close">×</button>
+  </div>
+  <ul class="platforms" id="dlgList"></ul>
+</dialog>
+
+<script>
+  const P = { // name: [color, verb]
+    'Spotify': ['#1DB954', 'play'], 'Apple Music': ['#FA2D48', 'play'], 'YouTube Music': ['#FF0000', 'play'],
+    'YouTube': ['#CC0000', 'watch'], 'Amazon Music': ['#25D1DA', 'play'], 'TIDAL': ['#000000', 'play'],
+    'Deezer': ['#A238FF', 'play'], 'Pandora': ['#3668FF', 'play'], 'iHeartRadio': ['#C6002B', 'play'],
+    'Anghami': ['#5B2BD9', 'play'], 'Boomplay': ['#0B1E3F', 'play'], 'iTunes': ['#B150E2', 'buy'], 'Bandcamp': ['#1DA0C3', 'buy']
+  };
+  const RELEASES = {
+    otv: { title: 'On The Verge', art: 'img/otv.jpg', links: [
+      ['Spotify', 'https://open.spotify.com/track/558cR2SF98LowcFjQOC6gV'],
+      ['Apple Music', 'https://music.apple.com/us/album/on-the-verge-single/6810458130'],
+      ['YouTube Music', 'https://music.youtube.com/watch?v=gnS0SjIQo30'],
+      ['YouTube', 'https://youtu.be/gnS0SjIQo30'],
+      ['Amazon Music', 'https://music.amazon.com/albums/B0HJB2KBJY?trackAsin=B0HJ9SBHTL'],
+      ['TIDAL', 'https://listen.tidal.com/track/559884849'],
+      ['Deezer', 'https://www.deezer.com/album/1075167442'],
+      ['iHeartRadio', 'https://www.iheart.com/artist/nahoa-life-34281634/albums/on-the-verge-431442888/'],
+      ['Anghami', 'https://play.anghami.com/song/1300717886'],
+      ['iTunes', 'https://music.apple.com/us/album/on-the-verge-single/6810458130?app=itunes']] },
+    nitm: { title: 'Nice, in the Mean', art: 'img/nitm.jpg', links: [
+      ['Spotify', 'https://open.spotify.com/album/38wsyZ3pThXFl2rJq9nKnN'],
+      ['Apple Music', 'https://music.apple.com/us/album/nice-in-the-mean-single/6785191494'],
+      ['YouTube Music', 'https://music.youtube.com/watch?v=R-VNv-ThY7o'],
+      ['Amazon Music', 'https://music.amazon.com/albums/B0H6TN9G9J?trackAsin=B0H6TWMFV3'],
+      ['TIDAL', 'https://listen.tidal.com/track/537889448'],
+      ['Deezer', 'https://www.deezer.com/album/1016350691'],
+      ['iHeartRadio', 'https://www.iheart.com/artist/nahoa-life-34281634/albums/nice-in-the-mean-412793392/'],
+      ['Anghami', 'https://play.anghami.com/song/1285708635'],
+      ['iTunes', 'https://music.apple.com/us/album/nice-in-the-mean-single/6785191494?app=itunes']] },
+    sia: { title: 'Songs In Anticipation', art: 'img/sia.jpg', links: [
+      ['Spotify', 'https://open.spotify.com/album/3oobJeCdxaP1jQXI1Ib4rm'],
+      ['Apple Music', 'https://music.apple.com/us/album/songs-in-anticipation/1838589889'],
+      ['YouTube Music', 'https://youtube.com/playlist?list=OLAK5uy_kIZgPWFxJyfOL5weGhL8t7KTWaiYD0yTE'],
+      ['Amazon Music', 'https://music.amazon.com/albums/B0FQ3JFZ2S'],
+      ['Pandora', 'https://www.pandora.com/AL:53180454'],
+      ['Deezer', 'https://www.deezer.com/album/817369001'],
+      ['Anghami', 'https://play.anghami.com/album/1074395820'],
+      ['Boomplay', 'https://www.boomplay.com/albums/115977428'],
+      ['Bandcamp', 'https://nahoalife.bandcamp.com/album/songs-in-anticipation-3'],
+      ['iTunes', 'https://music.apple.com/us/album/songs-in-anticipation/1838589889?app=itunes']] }
+  };
+  const dlg = document.getElementById('listenDlg'), list = document.getElementById('dlgList');
+  function open(key) {
+    const r = RELEASES[key];
+    document.getElementById('listenTitle').textContent = r.title;
+    document.getElementById('dlgArt').src = r.art;
+    list.innerHTML = r.links.map(([name, url]) => {
+      const [c, verb] = P[name];
+      return `<li><a href="${url}" target="_blank" rel="noopener"><span class="dot" style="background:${c}">${name === 'YouTube' ? '▶' : '♫'}</span>${name}<span class="go">${verb} ↗</span></a></li>`;
+    }).join('');
+    if (dlg.showModal) dlg.showModal(); else location.href = r.links[0][1];
+  }
+  document.querySelectorAll('[data-release]').forEach((b) => b.addEventListener('click', () => open(b.dataset.release)));
+  dlg.querySelector('.listen-close').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+</script>
+</body>
+</html>
