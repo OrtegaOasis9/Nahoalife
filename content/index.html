@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nahoa Life — Content Portfolio</title>
+<meta name="description" content="Artist and venue spotlights and high-converting UGC from Nahoa Life, a UCLA music industry student, producer, pianist, singer and rapper.">
+<link rel="canonical" href="https://www.nahoalife.com/content/">
+<meta property="og:title" content="Nahoa Life — Content Portfolio">
+<meta property="og:description" content="Artist/venue spotlights and UGC that feels natural and native.">
+<meta property="og:image" content="https://www.nahoalife.com/content/media/austrian-audio.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#F1ECE2; --ink:#151515; --cobalt:#2341C9; --butter:#F3D36B; --cherry:#C8322B; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:'Bricolage Grotesque', system-ui, sans-serif; font-size:18px; line-height:1.55; overflow-x:hidden; }
+  a { color:var(--cobalt); }
+  .mono { font-family:'DM Mono', ui-monospace, monospace; }
+  .serif { font-family:'Instrument Serif', Georgia, serif; font-weight:400; font-style:italic; }
+  .wrap { max-width:1320px; margin:0 auto; padding:0 24px; }
+  h2.big { margin:0; font-weight:800; font-size:clamp(52px, 8vw, 88px); line-height:.9; letter-spacing:-.04em; }
+
+  .top { display:flex; flex-wrap:wrap; gap:14px; justify-content:space-between; align-items:center; padding-top:20px; font-size:14px; }
+  .pill-url { background:var(--ink); color:var(--paper); padding:6px 12px; border-radius:999px; text-decoration:none; }
+  nav { display:flex; flex-wrap:wrap; gap:8px; }
+  nav a { display:inline-flex; align-items:center; min-height:44px; padding:0 16px; border:2px solid var(--ink); border-radius:999px; color:var(--ink); text-decoration:none; }
+  nav a.cta { background:var(--cherry); border-color:var(--cherry); color:#fff; }
+
+  .hero { display:flex; flex-wrap:wrap; gap:48px; align-items:flex-start; padding:48px 0 80px; }
+  .hero-text { flex:1 1 520px; min-width:0; }
+  .sticker { display:inline-block; transform:rotate(-3deg); background:var(--butter); padding:8px 16px; border:2px solid var(--ink); font-size:15px; }
+  .hero h1 { margin:20px 0 28px; font-weight:800; font-size:clamp(80px, 12vw, 150px); line-height:.86; letter-spacing:-.04em; }
+  .hero h1 .serif { color:var(--cobalt); letter-spacing:-.02em; }
+  .facts { list-style:none; margin:0; padding:0; display:grid; gap:12px; }
+  .facts li { display:flex; gap:12px; align-items:baseline; font-size:21px; line-height:1.35; }
+  .facts li::before { content:"✦"; color:var(--cherry); font-size:16px; flex:0 0 auto; }
+  .stats { flex:0 1 380px; display:grid; gap:16px; }
+  .stat { border:2px solid var(--ink); border-radius:22px; padding:18px 26px; }
+  .stat b { display:block; font-weight:800; font-size:64px; line-height:.9; letter-spacing:-.03em; }
+  .stat span { display:block; margin-top:8px; font-size:13px; }
+  .stat.y { background:var(--butter); box-shadow:6px 6px 0 var(--ink); transform:rotate(-1.5deg); }
+  .stat.c { background:var(--cobalt); color:#fff; transform:rotate(1deg); }
+  .stat.p b { color:var(--cobalt); }
+
+  .band { color:#fff; }
+  .band .wrap { padding-top:80px; padding-bottom:88px; }
+  .band-head { display:flex; flex-wrap:wrap; gap:20px; align-items:flex-end; justify-content:space-between; margin-bottom:40px; }
+  .band-head p { margin:0; font-size:14px; max-width:420px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:36px 28px; }
+  .card { min-width:0; }
+  .card:nth-child(odd) { transform:rotate(-1.2deg); } .card:nth-child(even) { transform:rotate(1.2deg); }
+  .vid { position:relative; aspect-ratio:9/16; border-radius:22px; overflow:hidden; border:3px solid var(--paper); background:var(--ink); }
+  .vid video { display:block; width:100%; height:100%; object-fit:cover; }
+  .vid .play { position:absolute; inset:0; border:0; background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .vid .play span { width:64px; height:64px; border-radius:50%; background:var(--paper); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,.3); }
+  .vid.playing .play, .vid.playing .views { display:none; }
+  .views { position:absolute; left:12px; top:12px; display:flex; align-items:center; gap:8px; padding:7px 13px; border-radius:999px; background:var(--butter); color:var(--ink); border:2px solid var(--ink); z-index:2; pointer-events:none; }
+  .views[hidden] { display:none; }
+  .views b { font-weight:800; font-size:22px; line-height:1; }
+  .views small { font-family:'DM Mono', monospace; font-size:12px; }
+  .card h3 { margin:14px 4px 4px; font-weight:800; font-size:24px; line-height:1.05; letter-spacing:-.02em; }
+  .card .kind { margin:0 4px; font-size:13px; }
+
+  .contact .wrap { padding-top:88px; padding-bottom:88px; }
+  .card-y { background:var(--butter); border:2px solid var(--ink); border-radius:32px; box-shadow:10px 10px 0 var(--ink); padding:48px clamp(20px, 4vw, 56px); display:flex; flex-wrap:wrap; gap:40px; align-items:flex-end; justify-content:space-between; }
+  .card-y h2 { margin:0; font-weight:800; font-size:clamp(60px, 9vw, 112px); line-height:.86; letter-spacing:-.04em; }
+  .card-y h2 .serif { color:var(--cherry); }
+  .links { display:flex; flex-direction:column; gap:12px; flex:0 1 420px; }
+  .links a { display:flex; align-items:center; justify-content:center; min-height:56px; padding:0 24px; border-radius:999px; border:2px solid var(--ink); color:var(--ink); text-decoration:none; font-weight:800; font-size:18px; background:#fff; }
+  .links a.main { background:var(--cobalt); color:#fff; border-color:var(--cobalt); }
+  footer { border-top:2px solid var(--ink); }
+  footer .wrap { padding-top:20px; padding-bottom:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; }
+  @media (max-width:640px) { .card, .stat { transform:none !important; } }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="top mono">
+    <a class="pill-url" href="/">nahoalife.com/content</a>
+    <nav aria-label="Sections">
+      <a href="#spotlights">spotlights</a>
+      <a href="#ugc">ugc</a>
+      <a href="#contact" class="cta">let's work</a>
+    </nav>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="sticker mono">content portfolio</div>
+      <h1>meet <span class="serif">Nahoa</span></h1>
+      <ul class="facts">
+        <li>18 years old, majoring in music industry at UCLA</li>
+        <li>Producer, pianist, singer, and rapper</li>
+        <li>Avid concert-goer</li>
+        <li>Specializes in artist/venue spotlights and high-converting UGC that feels natural and native</li>
+      </ul>
+    </div>
+    <div class="stats">
+      <div class="stat p"><b data-stat="followers">15.6K</b><span class="mono">Instagram followers, all organic</span></div>
+      <div class="stat y"><b data-stat="views">2M+</b><span class="mono">organic views on Instagram</span></div>
+      <div class="stat c"><b data-stat="top">1.2M</b><span class="mono">views on one spotlight</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="band" id="spotlights" style="background:var(--cobalt)">
+  <div class="wrap">
+    <div class="band-head">
+      <h2 class="big">spotlight <span class="serif" style="color:var(--butter)">examples</span></h2>
+      <p class="mono">Artist spotlights and album analyses. View counts update weekly from Instagram.</p>
+    </div>
+    <div class="grid" id="spotGrid"></div>
+  </div>
+</section>
+
+<section class="band" id="ugc" style="background:var(--cherry)">
+  <div class="wrap">
+    <div class="band-head">
+      <h2 class="big">UGC <span class="serif" style="color:var(--butter)">examples</span></h2>
+      <p class="mono">Brand content in four formats, made to feel like a native post, not an ad.</p>
+    </div>
+    <div class="grid" id="ugcGrid"></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="card-y">
+      <h2>let's start a <span class="serif">partnership!</span></h2>
+      <div class="links">
+        <a class="main" href="mailto:nahoacontent@gmail.com">nahoacontent@gmail.com</a>
+        <a href="tel:+15629663177">(562) 966-3177</a>
+        <a href="https://www.instagram.com/nahoalife/" target="_blank" rel="noopener">@nahoalife</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap mono"><span>© nahoa life</span><a href="/" style="color:var(--ink)">nahoalife.com</a></div></footer>
+
+<script>
+  const SPOTS = [
+    { id: 'DQVkdMJgLsP', title: 'Daniel Caesar', kind: 'album analysis' },
+    { id: 'DRBE5bVEbkS', title: 'Kassa Overall', kind: 'artist spotlight' },
+    { id: 'DWP6p1TAImQ', title: 'Geese', kind: 'album analysis' },
+    { id: 'DUALrwxADIL', title: 'IDK', kind: 'album analysis' }
+  ];
+  const UGC = [
+    { file: 'music-incorporation', title: 'Incorporation into original music', kind: 'product woven into a song' },
+    { file: 'kaotica', title: 'Green screen / audience callout', kind: 'Kaotica' },
+    { file: 'austrian-audio', title: 'Direct testimonial', kind: 'Austrian Audio' },
+    { file: 'nomatic', title: 'Listicle / demonstration', kind: 'Nomatic' }
+  ];
+  const eye = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+  const play = '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#C8322B"/></svg>';
+  const fmt = (n) => n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M' : n >= 1e3 ? (n / 1e3).toFixed(n >= 1e5 ? 0 : 1).replace(/\.0$/, '') + 'K' : String(n);
+  const floorFmt = (n) => n >= 1e6 ? Math.floor(n / 1e5) / 10 + 'M' : n >= 1e3 ? Math.floor(n / 100) / 10 + 'K' : String(n);
+
+  function card(src, poster, title, kind, label, id) {
+    const a = document.createElement('article');
+    a.className = 'card';
+    a.innerHTML = `<div class="vid">
+        <video playsinline preload="none" poster="${poster}" src="${src}"></video>
+        ${id ? `<div class="views" hidden>${eye}<b data-views="${id}"></b><small>views</small></div>` : ''}
+        <button class="play" aria-label="Play ${label}"><span>${play}</span></button>
+      </div>
+      <h3>${title}</h3><p class="kind mono">${kind}</p>`;
+    return a;
+  }
+  const sg = document.getElementById('spotGrid'), ug = document.getElementById('ugcGrid');
+  SPOTS.forEach((s) => sg.appendChild(card(`../feature/media/${s.id}.mp4`, `../feature/media/${s.id}.jpg`, s.title, s.kind, s.title, s.id)));
+  UGC.forEach((u) => ug.appendChild(card(`media/${u.file}.mp4`, `media/${u.file}.jpg`, u.title, u.kind, u.title)));
+
+  document.querySelectorAll('.vid').forEach((box) => {
+    const v = box.querySelector('video');
+    box.querySelector('.play').addEventListener('click', () => { v.controls = true; v.play(); });
+    v.addEventListener('play', () => { box.classList.add('playing'); document.querySelectorAll('.vid video').forEach((o) => { if (o !== v) o.pause(); }); });
+    v.addEventListener('ended', () => { box.classList.remove('playing'); v.controls = false; });
+  });
+
+  // Live numbers from the weekly Instagram job (same data as the feature page)
+  fetch('../feature/stats.json', { cache: 'no-cache' }).then((r) => r.ok ? r.json() : null).then((s) => {
+    if (!s) return;
+    if (s.followers) document.querySelector('[data-stat="followers"]').textContent = fmt(s.followers);
+    const posts = s.posts || {};
+    let top = 0;
+    Object.values(posts).forEach((p) => { top = Math.max(top, p.views || 0); });
+    if (top) document.querySelector('[data-stat="top"]').textContent = fmt(top);
+    if (s.channel_views) document.querySelector('[data-stat="views"]').textContent = floorFmt(s.channel_views) + '+';
+    SPOTS.forEach((sp) => {
+      const p = posts[sp.id]; const el = document.querySelector(`[data-views="${sp.id}"]`);
+      if (p && p.views && el) { el.textContent = fmt(p.views); el.closest('.views').hidden = false; }
+    });
+  }).catch(() => {});
+</script>
+</body>
+</html>
