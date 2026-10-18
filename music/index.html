@@ -55,6 +55,25 @@
   .more a { display:flex; align-items:center; justify-content:space-between; min-height:56px; padding:0 20px; border-radius:16px; background:rgba(241,236,226,.07); border:1px solid rgba(241,236,226,.12); text-decoration:none; font-weight:800; }
   .more a span { font-family:'DM Mono', monospace; font-weight:500; font-size:13px; opacity:.7; }
   .more a.hot { background:var(--cherry); border-color:var(--cherry); color:#fff; }
+  /* community sign-up */
+  .join { margin-top:22px; padding:20px; border-radius:24px; background:var(--butter); color:var(--ink); }
+  .join h2 { margin:0; font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:30px; line-height:1; letter-spacing:-.03em; text-transform:none; color:var(--ink); }
+  .join h2 .serif { font-size:34px; letter-spacing:-.01em; }
+  .join .lede { margin:8px 0 14px; font-size:15px; }
+  .join .grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .join .full { grid-column:1 / -1; }
+  .join label { display:block; font-family:'DM Mono', monospace; font-size:12px; margin-bottom:4px; }
+  .join input[type=text], .join input[type=tel], .join input[type=email] { width:100%; min-height:48px; padding:0 14px; border-radius:12px; border:1.5px solid rgba(21,21,21,.25); background:#FFFBEF; color:var(--ink); font:inherit; font-size:16px; }
+  .join input:focus { outline:2px solid var(--cobalt); outline-offset:1px; border-color:var(--cobalt); }
+  .join .consent { display:flex; gap:10px; align-items:flex-start; margin:14px 0 0; font-size:12px; line-height:1.45; }
+  .join .consent input { width:22px; height:22px; flex:0 0 22px; margin:1px 0 0; accent-color:var(--cobalt); }
+  .join .submit { width:100%; margin-top:14px; min-height:52px; background:var(--ink); color:var(--butter); font-size:17px; }
+  .join .msg { margin:10px 0 0; font-size:14px; font-weight:800; min-height:1px; }
+  .join .msg.err { color:var(--cherry); }
+  .join .hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  .join .done { text-align:center; padding:18px 0 6px; }
+  .join .done p { margin:6px 0 0; }
+  @media (max-width:420px) { .join .grid { grid-template-columns:1fr; } }
   footer { margin-top:36px; text-align:center; font-size:12px; opacity:.6; }
 
   /* platform picker */
@@ -83,13 +102,30 @@
 
   <nav class="socials mono" aria-label="Follow">
     <a href="https://www.instagram.com/nahoalife/" target="_blank" rel="noopener">instagram</a>
-    <a href="https://tiktok.com/@nahoalife" target="_blank" rel="noopener">tiktok</a>
     <a href="https://www.youtube.com/channel/UCMo8gesc1gno3fZucqBTzJQ" target="_blank" rel="noopener">youtube</a>
     <a href="https://open.spotify.com/artist/5LLzJlWBJAGPFt5P1EKG1S" target="_blank" rel="noopener">spotify</a>
     <a href="https://music.apple.com/us/artist/nahoa-life/1506373406" target="_blank" rel="noopener">apple music</a>
-    <a href="https://www.amazon.com/s?k=Nahoa+Life&amp;i=digital-music" target="_blank" rel="noopener">amazon</a>
     <a href="https://www.facebook.com/NahoaLife/" target="_blank" rel="noopener">facebook</a>
   </nav>
+
+  <section class="join" id="join" aria-labelledby="joinTitle">
+    <h2 id="joinTitle">join my <span class="serif">community</span></h2>
+    <p class="lede">Exclusive content, first word on shows, and new music before anyone else.</p>
+    <form id="joinForm" novalidate>
+      <div class="grid">
+        <div><label for="j-name">first name</label><input id="j-name" name="first_name" type="text" autocomplete="given-name" maxlength="60"></div>
+        <div><label for="j-city">city *</label><input id="j-city" name="city" type="text" autocomplete="address-level2" maxlength="80" required></div>
+        <div><label for="j-phone">phone</label><input id="j-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="(555) 555-5555"></div>
+        <div><label for="j-email">email</label><input id="j-email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="you@email.com"></div>
+        <div class="full"><label for="j-ig">instagram</label><input id="j-ig" name="instagram" type="text" autocomplete="off" autocapitalize="off" maxlength="40" placeholder="@yourhandle"></div>
+      </div>
+      <div class="hp" aria-hidden="true"><label for="j-web">website</label><input id="j-web" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+      <label class="consent"><input type="checkbox" name="consent" value="yes" id="j-consent">
+        <span id="j-consent-text">Yes, send me texts and emails from Nahoa Life about new music, shows and exclusive content. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out anytime.</span></label>
+      <button class="btn submit" type="submit">Join →</button>
+      <p class="msg" id="joinMsg" role="status" aria-live="polite"></p>
+    </form>
+  </section>
 
   <h2>new single</h2>
   <article class="release big">
@@ -101,6 +137,7 @@
         <button class="btn play" type="button" data-release="otv">▶ Listen</button>
         <a class="btn alt" href="https://www.youtube.com/watch?v=gnS0SjIQo30" target="_blank" rel="noopener">Music video</a>
         <a class="btn alt" href="/ontheverge/">Lyrics</a>
+        <a class="btn alt" href="https://nahoalife.bandcamp.com/track/on-the-verge" target="_blank" rel="noopener">Buy on Bandcamp</a>
       </div>
     </div>
   </article>
@@ -111,7 +148,10 @@
     <div class="info">
       <h3>Nice, in the Mean</h3>
       <p class="meta mono">single · July 5, 2026</p>
-      <div class="actions"><button class="btn play" type="button" data-release="nitm">▶ Listen</button></div>
+      <div class="actions">
+        <button class="btn play" type="button" data-release="nitm">▶ Listen</button>
+        <a class="btn alt" href="https://nahoalife.bandcamp.com/track/nice-in-the-mean" target="_blank" rel="noopener">Buy on Bandcamp</a>
+      </div>
     </div>
   </article>
   <article class="release">
@@ -162,6 +202,7 @@
       ['Deezer', 'https://www.deezer.com/album/1075167442'],
       ['iHeartRadio', 'https://www.iheart.com/artist/nahoa-life-34281634/albums/on-the-verge-431442888/'],
       ['Anghami', 'https://play.anghami.com/song/1300717886'],
+      ['Bandcamp', 'https://nahoalife.bandcamp.com/track/on-the-verge'],
       ['iTunes', 'https://music.apple.com/us/album/on-the-verge-single/6810458130?app=itunes']] },
     nitm: { title: 'Nice, in the Mean', art: 'img/nitm.jpg', links: [
       ['Spotify', 'https://open.spotify.com/album/38wsyZ3pThXFl2rJq9nKnN'],
@@ -172,6 +213,7 @@
       ['Deezer', 'https://www.deezer.com/album/1016350691'],
       ['iHeartRadio', 'https://www.iheart.com/artist/nahoa-life-34281634/albums/nice-in-the-mean-412793392/'],
       ['Anghami', 'https://play.anghami.com/song/1285708635'],
+      ['Bandcamp', 'https://nahoalife.bandcamp.com/track/nice-in-the-mean'],
       ['iTunes', 'https://music.apple.com/us/album/nice-in-the-mean-single/6785191494?app=itunes']] },
     sia: { title: 'Songs In Anticipation', art: 'img/sia.jpg', links: [
       ['Spotify', 'https://open.spotify.com/album/3oobJeCdxaP1jQXI1Ib4rm'],
@@ -199,6 +241,33 @@
   document.querySelectorAll('[data-release]').forEach((b) => b.addEventListener('click', () => open(b.dataset.release)));
   dlg.querySelector('.listen-close').addEventListener('click', () => dlg.close());
   dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+
+  /* community sign-up → Google Sheet (Apps Script web app) */
+  const SIGNUP_URL = ''; // paste the Apps Script "Web app URL" here
+  const form = document.getElementById('joinForm'), msg = document.getElementById('joinMsg');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = form.elements, say = (t, err) => { msg.textContent = t; msg.className = 'msg' + (err ? ' err' : ''); };
+    const phone = f.phone.value.trim(), email = f.email.value.trim(), city = f.city.value.trim();
+    if (!city) { say('Add your city.', 1); f.city.focus(); return; }
+    if (!phone && !email) { say('Add a phone number or an email.', 1); f.phone.focus(); return; }
+    if (phone && phone.replace(/\D/g, '').length < 10) { say('Check your phone number.', 1); f.phone.focus(); return; }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say('Check your email.', 1); f.email.focus(); return; }
+    if (!f.consent.checked) { say('Tick the box so we can send you updates.', 1); return; }
+    const data = new URLSearchParams({
+      first_name: f.first_name.value.trim(), phone, email, city,
+      instagram: f.instagram.value.trim().replace(/^@?/, f.instagram.value.trim() ? '@' : ''),
+      consent: 'yes', consent_text: document.getElementById('j-consent-text').textContent.trim(),
+      website: f.website.value, page: location.href
+    });
+    const btn = form.querySelector('.submit'); btn.disabled = true; btn.textContent = 'Joining…'; say('');
+    try {
+      if (SIGNUP_URL) await fetch(SIGNUP_URL, { method: 'POST', mode: 'no-cors', body: data });
+      document.getElementById('join').innerHTML = '<div class="done"><h2>you\u2019re <span class="serif">in.</span></h2><p>Welcome to the community' + (f.first_name.value.trim() ? ', ' + f.first_name.value.trim().replace(/[<>&]/g, '') : '') + '. Watch for a text or email from Nahoa soon.</p></div>';
+    } catch (err) {
+      btn.disabled = false; btn.textContent = 'Join →'; say('Something went wrong. Please try again.', 1);
+    }
+  });
 </script>
 </body>
 </html>
