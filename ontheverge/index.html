@@ -66,7 +66,7 @@
   .listen-head h2 { margin:0; font-family:'Instrument Serif', Georgia, serif; font-style:italic; font-weight:400; font-size:32px; line-height:1; }
   .listen-head p { margin:4px 0 0; font-size:13px; color:#5B5246; }
   .listen-close { margin-left:auto; align-self:flex-start; width:44px; height:44px; border-radius:50%; border:0; background:transparent; font-size:26px; line-height:1; cursor:pointer; color:#1A1714; }
-  .platforms { list-style:none; margin:0; padding:8px 12px 18px; display:grid; gap:6px; }
+  .platforms { list-style:none; margin:0; padding:8px 12px 18px; display:grid; gap:6px; max-height:calc(100vh - 170px); max-height:calc(100dvh - 170px); overflow-y:auto; }
   .platforms a { display:flex; align-items:center; gap:14px; min-height:56px; padding:0 16px; border-radius:14px; background:#fff; color:#1A1714; text-decoration:none; font-weight:800; font-size:17px; }
   .platforms a:hover { background:#1A1714; color:#F4EBDB; }
   .platforms .dot { width:28px; height:28px; border-radius:8px; flex:0 0 28px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:13px; }
@@ -213,11 +213,15 @@ Oh, you prayed for hollow bones</p>
     <button class="listen-close" type="button" aria-label="Close">×</button>
   </div>
   <ul class="platforms">
-    <li><a href="https://open.spotify.com/album/1LS2CO90f8yfCsqBl4EKn5" target="_blank" rel="noopener"><span class="dot" style="background:#1DB954">♫</span>Spotify<span class="go">play ↗</span></a></li>
+    <li><a href="https://open.spotify.com/track/558cR2SF98LowcFjQOC6gV" target="_blank" rel="noopener"><span class="dot" style="background:#1DB954">♫</span>Spotify<span class="go">play ↗</span></a></li>
     <li><a href="https://music.apple.com/us/album/on-the-verge-single/6810458130?uo=4" target="_blank" rel="noopener"><span class="dot" style="background:#FA2D48">♫</span>Apple Music<span class="go">play ↗</span></a></li>
     <li><a href="https://music.youtube.com/watch?v=gnS0SjIQo30" target="_blank" rel="noopener"><span class="dot" style="background:#FF0000">♫</span>YouTube Music<span class="go">play ↗</span></a></li>
     <li><a href="https://youtu.be/gnS0SjIQo30" target="_blank" rel="noopener"><span class="dot" style="background:#CC0000">▶</span>YouTube<span class="go">watch ↗</span></a></li>
-    <li><a href="https://www.amazon.com/gp/product/B0HJB2KBJY" target="_blank" rel="noopener"><span class="dot" style="background:#25D1DA">♫</span>Amazon Music<span class="go">play ↗</span></a></li>
+    <li><a href="https://music.amazon.com/albums/B0HJB2KBJY?trackAsin=B0HJ9SBHTL" target="_blank" rel="noopener"><span class="dot" style="background:#25D1DA">♫</span>Amazon Music<span class="go">play ↗</span></a></li>
+    <li><a href="https://listen.tidal.com/track/559884849" target="_blank" rel="noopener"><span class="dot" style="background:#000000">♫</span>TIDAL<span class="go">play ↗</span></a></li>
+    <li><a href="https://www.deezer.com/album/1075167442" target="_blank" rel="noopener"><span class="dot" style="background:#A238FF">♫</span>Deezer<span class="go">play ↗</span></a></li>
+    <li><a href="https://www.iheart.com/artist/nahoa-life-34281634/albums/on-the-verge-431442888/" target="_blank" rel="noopener"><span class="dot" style="background:#C6002B">♫</span>iHeartRadio<span class="go">play ↗</span></a></li>
+    <li><a href="https://play.anghami.com/song/1300717886" target="_blank" rel="noopener"><span class="dot" style="background:#5B2BD9">♫</span>Anghami<span class="go">play ↗</span></a></li>
     <li><a href="https://music.apple.com/us/album/on-the-verge-single/6810458130?uo=4&amp;app=itunes" target="_blank" rel="noopener"><span class="dot" style="background:#B150E2">♫</span>iTunes<span class="go">buy ↗</span></a></li>
   </ul>
 </dialog>
