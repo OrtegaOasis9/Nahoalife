@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nahoa Life — Get Featured</title>
+<meta name="description" content="Nahoa Life is an LA-based artist and music content creator: album analyses, artist spotlights and live show reports. Artists, labels and publicists — get featured.">
+<link rel="canonical" href="https://epk.nahoalife.com/feature/">
+<meta property="og:title" content="Nahoa Life — Get Featured">
+<meta property="og:description" content="Album analyses, artist spotlights and live show reports from LA.">
+<meta property="og:image" content="https://epk.nahoalife.com/feature/img/studio.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#F1ECE2; --ink:#151515; --cobalt:#2341C9; --butter:#F3D36B; --cherry:#C8322B; --white:#FFFFFF; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:'Bricolage Grotesque', system-ui, sans-serif; font-size:18px; line-height:1.55; overflow-x:hidden; }
+  a { color:var(--cobalt); }
+  a:hover { color:var(--ink); }
+  .mono { font-family:'DM Mono', ui-monospace, monospace; }
+  .serif { font-family:'Instrument Serif', Georgia, serif; font-weight:400; font-style:italic; }
+  .wrap { max-width:1320px; margin:0 auto; padding:0 24px; }
+  h2.big { margin:0; font-weight:800; font-size:clamp(52px, 8vw, 88px); line-height:.9; letter-spacing:-.04em; }
+
+  /* header */
+  .top { display:flex; flex-wrap:wrap; gap:14px; justify-content:space-between; align-items:center; padding-top:20px; font-size:14px; }
+  .pill-url { background:var(--ink); color:var(--paper); padding:6px 12px; border-radius:999px; }
+  nav { display:flex; flex-wrap:wrap; gap:8px; }
+  nav a { display:inline-flex; align-items:center; min-height:44px; padding:0 16px; border:2px solid var(--ink); border-radius:999px; color:var(--ink); text-decoration:none; }
+  nav a.cta { background:var(--cherry); border-color:var(--cherry); color:#fff; }
+
+  .hero { display:flex; flex-wrap:wrap; gap:40px; align-items:center; padding:48px 0 72px; }
+  .hero-text { flex:1 1 520px; min-width:0; }
+  .sticker { display:inline-block; transform:rotate(-4deg); background:var(--butter); padding:8px 16px; border:2px solid var(--ink); font-size:15px; }
+  .hero h1 { margin:20px 0 0; font-weight:800; font-size:clamp(96px, 16vw, 168px); line-height:.86; letter-spacing:-.04em; color:var(--cobalt); }
+  .hero h1 .serif { letter-spacing:-.02em; color:var(--ink); }
+  .hero p { margin:28px 0 0; max-width:540px; font-size:22px; line-height:1.45; }
+  .hero-photo { flex:0 1 420px; position:relative; padding:24px; margin:0 auto; }
+  .tape { position:absolute; top:0; left:50%; width:120px; height:34px; margin-left:-60px; background:var(--butter); opacity:.85; transform:rotate(-3deg); z-index:2; }
+  .print { position:relative; background:#fff; padding:14px 14px 56px; transform:rotate(3deg); box-shadow:0 18px 40px rgba(21,21,21,.18); }
+  .print img { display:block; width:100%; aspect-ratio:4/5; object-fit:cover; object-position:48% 40%; }
+  .print figcaption { position:absolute; left:24px; bottom:14px; font-size:26px; }
+  .badge { position:absolute; right:-4px; bottom:6px; width:120px; height:120px; border-radius:50%; background:var(--cherry); color:#fff; display:flex; align-items:center; justify-content:center; text-align:center; font-weight:800; font-size:18px; line-height:1.05; transform:rotate(12deg); z-index:3; }
+
+  /* stats strip */
+  .stats { display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+  .stat { border:2px solid var(--ink); border-radius:22px; padding:14px 24px; }
+  .stat b { display:block; font-weight:800; font-size:48px; line-height:.9; letter-spacing:-.03em; }
+  .stat span { display:block; margin-top:6px; font-size:13px; }
+  .stat.y { background:var(--butter); box-shadow:6px 6px 0 var(--ink); transform:rotate(-2deg); }
+  .stat.p { background:var(--paper); transform:rotate(1.5deg); }
+  .stat.p b { color:var(--cobalt); }
+  .stat.c { background:var(--cobalt); color:#fff; transform:rotate(-1deg); }
+
+  /* grammys */
+  .seen { background:var(--ink); color:var(--paper); }
+  .seen .wrap { display:flex; flex-wrap:wrap; gap:40px; align-items:center; padding-top:64px; padding-bottom:64px; }
+  .seen-text { flex:1 1 420px; }
+  .seen-text .tag { display:inline-block; background:var(--butter); color:var(--ink); padding:6px 12px; border-radius:999px; font-size:13px; }
+  .seen-text h2 { margin:14px 0 12px; font-weight:800; font-size:clamp(44px, 6vw, 72px); line-height:.92; letter-spacing:-.03em; }
+  .seen-text h2 .serif { color:var(--butter); }
+  .seen .vid { flex:0 1 300px; }
+
+  /* about */
+  .about { background:var(--cobalt); color:var(--paper); }
+  .about .wrap { display:flex; flex-wrap:wrap; gap:40px; padding-top:80px; padding-bottom:80px; }
+  .about h2 { flex:0 1 300px; margin:0; font-weight:800; font-size:64px; line-height:.95; letter-spacing:-.03em; }
+  .about h2 .serif { color:var(--butter); }
+  .about p { flex:1 1 560px; margin:0; font-size:clamp(20px, 2.2vw, 25px); line-height:1.5; }
+
+  /* features */
+  .features { background:var(--cherry); color:#fff; }
+  .features .wrap { padding-top:80px; padding-bottom:88px; }
+  .features-head { display:flex; flex-wrap:wrap; gap:28px; align-items:flex-end; justify-content:space-between; margin-bottom:44px; }
+  .features-head h2 .serif { color:var(--butter); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:36px 28px; }
+  .card { min-width:0; }
+  .card:nth-child(4n+1) { transform:rotate(-1.5deg); }
+  .card:nth-child(4n+2) { transform:rotate(1deg); }
+  .card:nth-child(4n+3) { transform:rotate(-.6deg); }
+  .card:nth-child(4n) { transform:rotate(1.6deg); }
+  .vid { position:relative; aspect-ratio:9/16; border-radius:22px; overflow:hidden; border:3px solid var(--paper); background:var(--ink); }
+  .vid video { display:block; width:100%; height:100%; object-fit:cover; }
+  .vid .play { position:absolute; inset:0; border:0; background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .vid .play span { width:64px; height:64px; border-radius:50%; background:var(--paper); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,.3); }
+  .vid.playing .play { display:none; }
+  .views { position:absolute; left:12px; top:12px; display:none; align-items:center; gap:8px; padding:7px 13px; border-radius:999px; background:var(--butter); color:var(--ink); border:2px solid var(--ink); z-index:2; pointer-events:none; }
+  .views b { font-weight:800; font-size:22px; line-height:1; }
+  .views small { font-family:'DM Mono', monospace; font-size:12px; }
+  .has-stats .views { display:flex; }
+  .vid.playing .views { display:none; }
+  .card h3 { margin:14px 4px 4px; font-weight:800; font-size:26px; line-height:1.05; letter-spacing:-.02em; }
+  .card .kind { margin:0 4px; font-size:13px; color:var(--butter); }
+  .meta { display:none; gap:16px; align-items:center; padding:10px 4px 0; font-size:14px; }
+  .has-stats .meta { display:flex; }
+  .meta span { display:inline-flex; align-items:center; gap:6px; }
+  .card .ig { display:inline-block; margin:10px 4px 0; font-size:14px; color:#fff; }
+
+  /* photos */
+  .photos .wrap { padding-top:88px; padding-bottom:88px; }
+  .photos h2 { margin-bottom:40px; }
+  .photos h2 .serif { color:var(--cobalt); }
+  .roll { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:32px; }
+  .roll a { display:block; background:#fff; padding:12px 12px 40px; box-shadow:0 12px 28px rgba(21,21,21,.15); }
+  .roll a:nth-child(odd) { transform:rotate(-1.8deg); } .roll a:nth-child(even) { transform:rotate(1.5deg); }
+  .roll img { display:block; width:100%; aspect-ratio:1; object-fit:cover; }
+
+  /* contact */
+  .contact .wrap { padding-bottom:88px; }
+  .card-y { background:var(--butter); border:2px solid var(--ink); border-radius:32px; box-shadow:10px 10px 0 var(--ink); padding:48px clamp(20px, 4vw, 48px); display:flex; flex-wrap:wrap; gap:48px; align-items:flex-start; }
+  .contact-text { flex:1 1 340px; min-width:0; }
+  .contact-text h2 { margin:8px 0 20px; font-weight:800; font-size:clamp(60px, 8vw, 96px); line-height:.88; letter-spacing:-.04em; }
+  .contact-text h2 .serif { color:var(--cherry); }
+  .contact-text p { margin:0 0 24px; font-size:19px; max-width:440px; }
+  .contact-links { display:flex; flex-direction:column; gap:10px; font-size:15px; }
+  .contact-links a { color:var(--ink); }
+  form { flex:1 1 480px; min-width:0; background:#fff; border:2px solid var(--ink); border-radius:24px; padding:28px; display:flex; flex-direction:column; gap:20px; }
+  fieldset { margin:0; padding:0; border:0; }
+  legend { padding:0; margin-bottom:10px; font-size:13px; }
+  .choices { display:flex; flex-wrap:wrap; gap:8px; }
+  .choices label { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 16px; border:2px solid var(--ink); border-radius:999px; font-weight:500; cursor:pointer; }
+  .choices label:has(input:checked) { background:var(--cobalt); color:#fff; }
+  .choices input { accent-color:var(--butter); }
+  .fields { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px; }
+  .field { display:flex; flex-direction:column; gap:6px; font-size:13px; }
+  .field input, .field select, .field textarea { min-height:48px; padding:0 14px; border:2px solid var(--ink); border-radius:12px; font:500 17px 'Bricolage Grotesque', system-ui, sans-serif; background:var(--paper); color:var(--ink); }
+  .field textarea { padding:12px 14px; resize:vertical; }
+  button.go { align-self:flex-start; min-height:56px; padding:0 32px; border:2px solid var(--ink); border-radius:999px; background:var(--cherry); color:#fff; font:800 19px 'Bricolage Grotesque', system-ui, sans-serif; cursor:pointer; box-shadow:4px 4px 0 var(--ink); }
+  .note { font-size:12px; margin:0; }
+
+  footer { border-top:2px solid var(--ink); }
+  footer .wrap { padding-top:20px; padding-bottom:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; }
+
+  @media (max-width:640px) {
+    .card, .roll a, .stat { transform:none !important; }
+    .hero { padding-top:28px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="top mono">
+    <span class="pill-url">nahoalife.com/feature</span>
+    <nav aria-label="Sections">
+      <a href="#about">about</a>
+      <a href="#features">features</a>
+      <a href="#photos">photos</a>
+      <a href="#contact" class="cta">get featured</a>
+    </nav>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="sticker mono">content that moves music</div>
+      <h1>nahoa<br><span class="serif">life</span></h1>
+      <p>Viral content that puts a spotlight on the artists I love, from household names to indie gems. Artists, labels and publicists: let's get your music in front of the people who'll love it.</p>
+      <div class="stats" style="margin-top:36px" id="statStrip">
+        <div class="stat p"><b data-stat="followers">15.6K</b><span class="mono">IG followers</span></div>
+        <div class="stat y" data-needs="total_views" hidden><b data-stat="total_views"></b><span class="mono">views on these features</span></div>
+        <div class="stat c" data-needs="top_views" hidden><b data-stat="top_views"></b><span class="mono">top feature</span></div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="tape" aria-hidden="true"></div>
+      <figure class="print" style="margin:0">
+        <img src="img/studio.jpg" alt="Nahoa Life at his keyboard setup">
+        <figcaption class="serif">UCLA dorm</figcaption>
+      </figure>
+      <div class="badge" aria-hidden="true">rapper ·<br>creator ·<br>pianist</div>
+    </div>
+  </div>
+</header>
+
+<section class="seen" aria-labelledby="seen-h">
+  <div class="wrap">
+    <div class="seen-text">
+      <span class="tag mono">as seen on</span>
+      <h2 id="seen-h">the <span class="serif">GRAMMYs</span> on CBS</h2>
+      <p>Nahoa was featured as a young musician in the GRAMMYs broadcast campaign on CBS.</p>
+    </div>
+    <div class="vid" data-id="DUJVJSyiCsF">
+      <video playsinline preload="none" poster="media/DUJVJSyiCsF.jpg" src="media/DUJVJSyiCsF.mp4"></video>
+      <button class="play" aria-label="Play GRAMMYs feature"><span><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#C8322B"/></svg></span></button>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <h2>about <span class="serif">the creator</span></h2>
+    <p>Yo, I’m Nahoa, an LA-based artist and music content creator who shares album analyses (not ratings), artist spotlights, and live show reports. I’m passionate about discovering and promoting new music, especially hip-hop and jazz, as well as R&amp;B, folk, and experimental. Many of my videos get excellent engagement and even go viral (regardless of how large the artist is), because people appreciate how earnestly I talk about music, and also I’ve just developed a knack for writing and editing engaging short-form content. There are so many dope projects and shows that just need to reach the right audience, which is why I help to highlight fellow artists and performance spaces. I’m currently majoring in music industry at UCLA, and I go to see live music every week; I’d love to see you, your artist, or your venue next!</p>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="wrap">
+    <div class="features-head">
+      <h2 class="big">the <span class="serif">features</span></h2>
+      <p class="mono" style="margin:0;font-size:14px">tap to play · stats from Instagram</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="photos" id="photos">
+  <div class="wrap">
+    <h2 class="big">photo <span class="serif">roll</span></h2>
+    <div class="roll">
+      <a href="../epk/img/photos/bed.jpg"><img src="../epk/img/photos/bed.jpg" alt="Nahoa in his room" loading="lazy" style="object-position:30% 50%"></a>
+      <a href="../epk/img/photos/hero-7424.jpg"><img src="../epk/img/photos/hero-7424.jpg" alt="Nahoa at the piano" loading="lazy"></a>
+      <a href="../epk/img/photos/7360.jpg"><img src="../epk/img/photos/7360.jpg" alt="Nahoa Life photo" loading="lazy"></a>
+      <a href="../epk/img/photos/7395.jpg"><img src="../epk/img/photos/7395.jpg" alt="Nahoa Life photo" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="card-y">
+      <div class="contact-text">
+        <div class="mono" style="font-size:14px">artists, labels, publicists, brands —</div>
+        <h2>feature <span class="serif">your artist.</span></h2>
+        <p>Hire me to create a feature reel, interview or campaign around your music. Tell me about the project and I'll get back to you with ideas and rates.</p>
+        <div class="contact-links mono">
+          <a href="mailto:nahoalifemusic@gmail.com">nahoalifemusic@gmail.com</a>
+          <a href="https://www.instagram.com/nahoalife/">@nahoalife</a>
+          <a href="https://epk.nahoalife.com/">press kit</a>
+        </div>
+      </div>
+
+      <form id="featureForm">
+        <fieldset>
+          <legend class="mono">what's this about?</legend>
+          <div class="choices">
+            <label><input type="radio" name="type" value="Feature reel" checked> feature reel</label>
+            <label><input type="radio" name="type" value="Interview"> interview</label>
+            <label><input type="radio" name="type" value="Event coverage"> event coverage</label>
+            <label><input type="radio" name="type" value="Campaign / series"> campaign / series</label>
+          </div>
+        </fieldset>
+        <div class="fields">
+          <label class="field mono">your name<input type="text" name="name" required></label>
+          <label class="field mono">email<input type="email" name="email" required></label>
+          <label class="field mono">you are a…<select name="role"><option>artist</option><option>publicist / PR</option><option>label / management</option><option>event / venue</option><option>brand</option><option>other</option></select></label>
+          <label class="field mono">artist or project<input type="text" name="project"></label>
+          <label class="field mono">release or event date<input type="date" name="date"></label>
+          <label class="field mono">link to music / event<input type="url" name="link" placeholder="https://"></label>
+        </div>
+        <label class="field mono">tell me more<textarea name="message" rows="4"></textarea></label>
+        <button type="submit" class="go">Get Featured →</button>
+        <p class="note mono">Opens your email app with everything filled in.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap mono"><span>© nahoa life</span><span>made in LA</span></div></footer>
+
+<script>
+  // Feature reels. "id" is the Instagram reel code; the weekly stats job matches on it.
+  const FEATURES = [
+    { id: 'DQVkdMJgLsP', title: 'Daniel Caesar', kind: 'album analysis' },
+    { id: 'Dd1p34xAdlW', title: 'Stevie Wonder', kind: 'album analysis' },
+    { id: 'DWP6p1TAImQ', title: 'Geese', kind: 'album analysis' },
+    { id: 'DekfFEZyaKx', title: 'Quadeca', kind: 'album analysis' },
+    { id: 'DVzTw3QAbOx', title: 'Yebba', kind: 'album analysis' },
+    { id: 'DSBjvTzgKfi', title: 'redveil', kind: 'artist spotlight' },
+    { id: 'DUALrwxADIL', title: 'IDK', kind: 'album analysis' },
+    { id: 'DRBE5bVEbkS', title: 'Kassa Overall', kind: 'artist spotlight' },
+    { id: 'DeSokGZAlJU', title: 'Knox', kind: 'live show report' },
+    { id: 'DbCav1DAcQv', title: 'Shaan at the Moroccan Lounge', kind: 'live show report' },
+    { id: 'DXlS1vmgOhd', title: 'Berklee pianist spotlight', kind: 'artist spotlight' }
+  ];
+  const icon = {
+    eye: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+    heart: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F3D36B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>',
+    comment: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F3D36B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg>',
+    share: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F3D36B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>',
+    play: '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#C8322B"/></svg>'
+  };
+  const fmt = (n) => n == null ? '' : n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/, '') + 'M'
+    : n >= 1e3 ? (n / 1e3).toFixed(n >= 1e5 ? 0 : 1).replace(/\.0$/, '') + 'K' : String(n);
+
+  const grid = document.getElementById('grid');
+  FEATURES.forEach((f) => {
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.dataset.id = f.id;
+    card.innerHTML = `
+      <div class="vid" data-id="${f.id}">
+        <video playsinline preload="none" poster="media/${f.id}.jpg" src="media/${f.id}.mp4"></video>
+        <div class="views">${icon.eye}<b data-k="views"></b><small>views</small></div>
+        <button class="play" aria-label="Play ${f.title}"><span>${icon.play}</span></button>
+      </div>
+      <h3>${f.title}</h3>
+      <p class="kind mono">${f.kind}</p>
+      <div class="meta mono">
+        <span>${icon.heart}<i data-k="likes" style="font-style:normal"></i></span>
+        <span>${icon.comment}<i data-k="comments" style="font-style:normal"></i></span>
+        <span>${icon.share}<i data-k="shares" style="font-style:normal"></i></span>
+      </div>
+      <a class="ig mono" href="https://www.instagram.com/reel/${f.id}/" target="_blank" rel="noopener">watch on Instagram ↗</a>`;
+    grid.appendChild(card);
+  });
+
+  // Play one video at a time
+  document.querySelectorAll('.vid').forEach((box) => {
+    const v = box.querySelector('video');
+    box.querySelector('.play').addEventListener('click', () => { v.controls = true; v.play(); });
+    v.addEventListener('play', () => {
+      box.classList.add('playing');
+      document.querySelectorAll('.vid video').forEach((o) => { if (o !== v) o.pause(); });
+    });
+    v.addEventListener('ended', () => { box.classList.remove('playing'); v.controls = false; });
+  });
+
+  // Weekly Instagram stats (written by the GitHub Action). Missing numbers simply stay hidden.
+  fetch('stats.json', { cache: 'no-cache' }).then((r) => r.ok ? r.json() : null).then((s) => {
+    if (!s) return;
+    if (s.followers) document.querySelector('[data-stat="followers"]').textContent = fmt(s.followers);
+    const posts = s.posts || {};
+    let total = 0, top = 0;
+    FEATURES.forEach((f) => {
+      const p = posts[f.id];
+      if (!p || p.views == null) return;
+      total += p.views; top = Math.max(top, p.views);
+      const card = grid.querySelector(`[data-id="${f.id}"]`);
+      card.classList.add('has-stats');
+      ['views', 'likes', 'comments', 'shares'].forEach((k) => {
+        const el = card.querySelector(`[data-k="${k}"]`);
+        if (el) el.textContent = fmt(p[k]);
+      });
+    });
+    if (total) {
+      [['total_views', total], ['top_views', top]].forEach(([k, v]) => {
+        document.querySelector(`[data-stat="${k}"]`).textContent = fmt(v) + (k === 'total_views' ? '+' : '');
+        document.querySelector(`[data-needs="${k}"]`).hidden = false;
+      });
+    }
+  }).catch(() => {});
+
+  // Form: builds a pre-filled email until a form service is connected
+  document.getElementById('featureForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(e.target);
+    const subject = `Feature request: ${d.get('type')} — ${d.get('project') || d.get('name')}`;
+    const body = [
+      `Type: ${d.get('type')}`, `Name: ${d.get('name')}`, `Email: ${d.get('email')}`, `Role: ${d.get('role')}`,
+      `Artist / project: ${d.get('project')}`, `Date: ${d.get('date')}`, `Link: ${d.get('link')}`, '', d.get('message')
+    ].join('\n');
+    location.href = `mailto:nahoalifemusic@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>
+</body>
+</html>
