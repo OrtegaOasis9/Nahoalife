@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nahoa Life — Content Portfolio</title>
-<meta name="description" content="Artist and venue spotlights and high-converting UGC from Nahoa Life, a UCLA music industry student, producer, pianist, singer and rapper.">
+<meta name="description" content="High-converting UGC from Nahoa Life, a UCLA music industry student, producer, pianist, singer and rapper.">
 <link rel="canonical" href="https://www.nahoalife.com/content/">
 <meta property="og:title" content="Nahoa Life — Content Portfolio">
-<meta property="og:description" content="Artist/venue spotlights and UGC that feels natural and native.">
+<meta property="og:description" content="UGC that feels natural and native.">
 <meta property="og:image" content="https://www.nahoalife.com/content/media/austrian-audio.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -106,7 +106,6 @@
   <div class="top mono">
     <a class="pill-url" href="/">nahoalife.com/content</a>
     <nav aria-label="Sections">
-      <a href="#spotlights">spotlights</a>
       <a href="#ugc">ugc</a>
       <a href="#contact" class="cta">let's work</a>
     </nav>
@@ -120,26 +119,16 @@
         <li>18 years old, majoring in music industry at UCLA</li>
         <li>Producer, pianist, singer, and rapper</li>
         <li>Avid concert-goer</li>
-        <li>Specializes in artist/venue spotlights and high-converting UGC that feels natural and native</li>
+        <li>Specializes in high-converting UGC that feels natural and native</li>
       </ul>
     </div>
     <div class="stats">
       <div class="stat p"><b data-stat="followers">15.6K</b><span class="mono">Instagram followers, all organic</span></div>
       <div class="stat y"><b data-stat="views">2M+</b><span class="mono">organic views on Instagram</span></div>
-      <div class="stat c"><b data-stat="top">1.2M</b><span class="mono">views on one spotlight</span></div>
+      <div class="stat c"><b data-stat="top">1.2M</b><span class="mono">views on a single video</span></div>
     </div>
   </div>
 </header>
-
-<section class="band" id="spotlights" style="background:var(--cobalt)">
-  <div class="wrap">
-    <div class="band-head">
-      <h2 class="big">spotlight <span class="serif" style="color:var(--butter)">examples</span></h2>
-      <p class="mono">Artist spotlights and album analyses. View counts update weekly from Instagram.</p>
-    </div>
-    <div class="grid" id="spotGrid"></div>
-  </div>
-</section>
 
 <section class="band" id="ugc" style="background:var(--cherry)">
   <div class="wrap">
@@ -169,7 +158,6 @@
               <option>Demonstration</option>
               <option>Green screen / callout</option>
               <option>Listicle</option>
-              <option>Artist or venue spotlight</option>
               <option>Not sure yet</option>
             </select></div>
           <div class="half"><label for="u-when">timeline</label>
@@ -220,12 +208,6 @@
     });
   })();
 
-  const SPOTS = [
-    { id: 'DQVkdMJgLsP', title: 'Daniel Caesar', kind: 'album analysis' },
-    { id: 'DRBE5bVEbkS', title: 'Kassa Overall', kind: 'artist spotlight' },
-    { id: 'DWP6p1TAImQ', title: 'Geese', kind: 'album analysis' },
-    { id: 'DUALrwxADIL', title: 'IDK', kind: 'album analysis' }
-  ];
   const UGC = [
     { file: 'music-incorporation', title: 'Incorporation into original music', kind: 'product woven into a song' },
     { file: 'kaotica', title: 'Green screen / audience callout', kind: 'Kaotica' },
@@ -248,8 +230,7 @@
       <h3>${title}</h3><p class="kind mono">${kind}</p>`;
     return a;
   }
-  const sg = document.getElementById('spotGrid'), ug = document.getElementById('ugcGrid');
-  SPOTS.forEach((s) => sg.appendChild(card(`../feature/media/${s.id}.mp4`, `../feature/media/${s.id}.jpg`, s.title, s.kind, s.title, s.id)));
+  const ug = document.getElementById('ugcGrid');
   UGC.forEach((u) => ug.appendChild(card(`media/${u.file}.mp4`, `media/${u.file}.jpg`, u.title, u.kind, u.title)));
 
   document.querySelectorAll('.vid').forEach((box) => {
@@ -268,10 +249,6 @@
     Object.values(posts).forEach((p) => { top = Math.max(top, p.views || 0); });
     if (top) document.querySelector('[data-stat="top"]').textContent = fmt(top);
     if (s.channel_views) document.querySelector('[data-stat="views"]').textContent = floorFmt(s.channel_views) + '+';
-    SPOTS.forEach((sp) => {
-      const p = posts[sp.id]; const el = document.querySelector(`[data-views="${sp.id}"]`);
-      if (p && p.views && el) { el.textContent = fmt(p.views); el.closest('.views').hidden = false; }
-    });
   }).catch(() => {});
 </script>
 </body>
