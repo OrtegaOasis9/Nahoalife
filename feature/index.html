@@ -158,7 +158,7 @@
       <p>Viral content that puts a spotlight on the artists I love, from household names to indie gems. Artists, labels and publicists: let's get your music in front of the people who'll love it.</p>
       <div class="stats" style="margin-top:36px" id="statStrip">
         <div class="stat p"><b data-stat="followers">15.6K</b><span class="mono">IG followers</span></div>
-        <div class="stat y" data-needs="total_views" hidden><b data-stat="total_views"></b><span class="mono">views on these features</span></div>
+        <div class="stat y" data-needs="total_views" hidden><b data-stat="total_views"></b><span class="mono">total views on Instagram</span></div>
         <div class="stat c" data-needs="top_views" hidden><b data-stat="top_views"></b><span class="mono">top feature</span></div>
       </div>
     </div>
@@ -283,6 +283,8 @@
   const fmt = (n) => n == null ? '' : n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/, '') + 'M'
     : n >= 1e3 ? (n / 1e3).toFixed(n >= 1e5 ? 0 : 1).replace(/\.0$/, '') + 'K' : String(n);
 
+  // round down for "+" totals so we never overstate
+  const floorFmt = (n) => n >= 1e6 ? Math.floor(n / 1e5) / 10 + 'M' : n >= 1e3 ? Math.floor(n / 100) / 10 + 'K' : String(n);
   const grid = document.getElementById('grid');
   FEATURES.forEach((f) => {
     const card = document.createElement('article');
@@ -333,9 +335,14 @@
         if (el) el.textContent = fmt(p[k]);
       });
     });
+    // Biggest features first
+    [...grid.children]
+      .sort((a, b) => ((posts[b.dataset.id] || {}).views || 0) - ((posts[a.dataset.id] || {}).views || 0))
+      .forEach((c) => grid.appendChild(c));
+    if (s.channel_views) total = Math.max(total, s.channel_views);
     if (total) {
       [['total_views', total], ['top_views', top]].forEach(([k, v]) => {
-        document.querySelector(`[data-stat="${k}"]`).textContent = fmt(v) + (k === 'total_views' ? '+' : '');
+        document.querySelector(`[data-stat="${k}"]`).textContent = k === 'total_views' ? floorFmt(v) + '+' : fmt(v);
         document.querySelector(`[data-needs="${k}"]`).hidden = false;
       });
     }
