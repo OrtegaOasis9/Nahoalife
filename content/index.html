@@ -70,6 +70,31 @@
   .links { display:flex; flex-direction:column; gap:12px; flex:0 1 420px; }
   .links a { display:flex; align-items:center; justify-content:center; min-height:56px; padding:0 24px; border-radius:999px; border:2px solid var(--ink); color:var(--ink); text-decoration:none; font-weight:800; font-size:18px; background:#fff; }
   .links a.main { background:var(--cobalt); color:#fff; border-color:var(--cobalt); }
+  .card-y.form-card { display:block; }
+  .card-y.form-card h2 { margin-bottom:10px; }
+  .card-y .lede { margin:0 0 28px; font-size:18px; max-width:560px; }
+  .ugc-form .fields { display:grid; grid-template-columns:repeat(6, 1fr); gap:16px; }
+  .ugc-form .fields > div { grid-column:span 2; }
+  .ugc-form .fields > .half { grid-column:span 3; }
+  .ugc-form .fields > .full { grid-column:1 / -1; }
+  @media (max-width:760px) { .ugc-form .fields { grid-template-columns:1fr; } .ugc-form .fields > div { grid-column:1 / -1 !important; } }
+  .ugc-form label { display:block; font-family:'DM Mono', monospace; font-size:13px; margin-bottom:6px; }
+  .ugc-form input, .ugc-form select, .ugc-form textarea { width:100%; min-height:52px; padding:0 16px; border-radius:14px; border:2px solid var(--ink); background:#fff; color:var(--ink); font:inherit; font-size:16px; }
+  .ugc-form select { appearance:none; -webkit-appearance:none; background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' stroke='%23151515' stroke-width='2' fill='none'/></svg>") no-repeat right 16px center; padding-right:40px; }
+  .ugc-form textarea { min-height:120px; padding:14px 16px; resize:vertical; }
+  .ugc-form :focus { outline:3px solid var(--cobalt); outline-offset:1px; }
+  .ugc-form .row { display:flex; flex-wrap:wrap; gap:16px; align-items:center; margin-top:22px; }
+  .ugc-form button { min-height:58px; padding:0 34px; border-radius:999px; border:0; background:var(--cobalt); color:#fff; font:inherit; font-weight:800; font-size:19px; cursor:pointer; }
+  .ugc-form button:disabled { opacity:.6; }
+  .ugc-form .msg { margin:0; font-weight:800; }
+  .ugc-form .msg.err { color:var(--cherry); }
+  .ugc-form .hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  .or { margin:34px 0 12px; font-size:13px; }
+  .links.inline { flex-direction:row; flex-wrap:wrap; }
+  .links.inline a { flex:1 1 200px; min-height:50px; font-size:16px; }
+  .sent { padding:20px 0; }
+  .sent h3 { margin:0; font-weight:800; font-size:clamp(40px, 6vw, 64px); line-height:.9; letter-spacing:-.03em; }
+  .sent p { margin:12px 0 0; font-size:18px; }
   footer { border-top:2px solid var(--ink); }
   footer .wrap { padding-top:20px; padding-bottom:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; }
   @media (max-width:640px) { .card, .stat { transform:none !important; } }
@@ -128,9 +153,41 @@
 
 <section class="contact" id="contact">
   <div class="wrap">
-    <div class="card-y">
+    <div class="card-y form-card">
       <h2>let's start a <span class="serif">partnership!</span></h2>
-      <div class="links">
+      <p class="lede">Tell me about your brand and what you need. I'll get back to you within 48 hours.</p>
+      <div id="ugcWrap">
+      <form class="ugc-form" id="ugcForm" novalidate>
+        <div class="fields">
+          <div><label for="u-name">your name *</label><input id="u-name" name="name" type="text" autocomplete="name" maxlength="80" required></div>
+          <div><label for="u-brand">brand / company *</label><input id="u-brand" name="brand" type="text" autocomplete="organization" maxlength="100" required></div>
+          <div><label for="u-email">email *</label><input id="u-email" name="email" type="email" autocomplete="email" maxlength="120" required></div>
+          <div class="half"><label for="u-type">content type</label>
+            <select id="u-type" name="content_type">
+              <option value="">choose one</option>
+              <option>Direct testimonial</option>
+              <option>Demonstration</option>
+              <option>Green screen / callout</option>
+              <option>Listicle</option>
+              <option>Artist or venue spotlight</option>
+              <option>Not sure yet</option>
+            </select></div>
+          <div class="half"><label for="u-when">timeline</label>
+            <select id="u-when" name="timeline">
+              <option value="">choose one</option>
+              <option>ASAP</option>
+              <option>Within 2 weeks</option>
+              <option>Within a month</option>
+              <option>Flexible</option>
+            </select></div>
+          <div class="full"><label for="u-msg">tell me about the project</label><textarea id="u-msg" name="message" maxlength="2000" placeholder="Product, goals, deliverables, links…"></textarea></div>
+        </div>
+        <div class="hp" aria-hidden="true"><label for="u-web">website</label><input id="u-web" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        <div class="row"><button type="submit">Send inquiry →</button><p class="msg" id="ugcMsg" role="status" aria-live="polite"></p></div>
+      </form>
+      </div>
+      <p class="or mono">or reach out directly</p>
+      <div class="links inline">
         <a class="main" href="mailto:nahoacontent@gmail.com">nahoacontent@gmail.com</a>
         <a href="tel:+15629663177">(562) 966-3177</a>
         <a href="https://www.instagram.com/nahoalife/" target="_blank" rel="noopener">@nahoalife</a>
@@ -142,6 +199,27 @@
 <footer><div class="wrap mono"><span>© nahoa life</span><a href="/" style="color:var(--ink)">nahoalife.com</a></div></footer>
 
 <script>
+  /* UGC inquiry → Google Sheet "UGC Inquiries" tab + email alert (Apps Script web app) */
+  const INQUIRY_URL = 'https://script.google.com/macros/s/AKfycbxL0BHtb4L_EjXdStrwhvAumnY3luFkCvBDZVB52rPBZU9LP-9K3WIHEGolrW03wFvlRA/exec';
+  (function () {
+    const form = document.getElementById('ugcForm'), msg = document.getElementById('ugcMsg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = form.elements, say = (t, err) => { msg.textContent = t; msg.className = 'msg' + (err ? ' err' : ''); };
+      const name = f.name.value.trim(), brand = f.brand.value.trim(), email = f.email.value.trim();
+      if (!name) { say('Add your name.', 1); f.name.focus(); return; }
+      if (!brand) { say('Add your brand.', 1); f.brand.focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say('Add a valid email.', 1); f.email.focus(); return; }
+      const btn = form.querySelector('button'); btn.disabled = true; btn.textContent = 'Sending…'; say('');
+      try {
+        await fetch(INQUIRY_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({
+          form: 'ugc', name, brand, email, content_type: f.content_type.value, timeline: f.timeline.value,
+          message: f.message.value.trim(), website: f.website.value, page: location.href }) });
+        document.getElementById('ugcWrap').innerHTML = '<div class="sent"><h3>got it, ' + name.split(' ')[0].replace(/[<>&]/g, '') + '.</h3><p>Thanks for reaching out. I\u2019ll get back to you at ' + email.replace(/[<>&]/g, '') + ' within 48 hours.</p></div>';
+      } catch (err) { btn.disabled = false; btn.textContent = 'Send inquiry →'; say('Something went wrong. Email nahoacontent@gmail.com instead.', 1); }
+    });
+  })();
+
   const SPOTS = [
     { id: 'DQVkdMJgLsP', title: 'Daniel Caesar', kind: 'album analysis' },
     { id: 'DRBE5bVEbkS', title: 'Kassa Overall', kind: 'artist spotlight' },

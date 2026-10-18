@@ -1,25 +1,45 @@
 /**
- * Nahoa Life — community sign-ups from nahoalife.com/music → this Google Sheet.
- * Setup: open the Sheet › Extensions › Apps Script › paste this › Deploy › New deployment ›
- * type "Web app", Execute as "Me", Who has access "Anyone" › Deploy › copy the Web app URL.
+ * Nahoa Life — website forms → this Google Sheet.
+ *  - /music "join my community" → tab "Signups"
+ *  - /content UGC inquiries      → tab "UGC Inquiries" + email alert
+ * After pasting: Deploy › Manage deployments › ✏️ › Version: New version › Deploy (keeps the same URL).
  */
-const TAB = 'Signups';
-const HEADERS = ['Timestamp', 'First name', 'Phone', 'Email', 'City', 'Instagram', 'Consent', 'Consent text', 'Page'];
+const ALERT_EMAIL = 'nahoacontent@gmail.com';
+const TABS = {
+  signup: { name: 'Signups', headers: ['Timestamp', 'First name', 'Phone', 'Email', 'City', 'Instagram', 'Consent', 'Consent text', 'Page'] },
+  ugc:    { name: 'UGC Inquiries', headers: ['Timestamp', 'Name', 'Brand', 'Email', 'Content type', 'Timeline', 'Message', 'Status', 'Page'] }
+};
 
 function doPost(e) {
   const p = (e && e.parameter) || {};
-  if (p.website) return reply_();                       // spam bot filled the hidden field
+  if (p.website) return reply_();                                   // spam bot filled the hidden field
+  const c = (v, n) => String(v || '').slice(0, n || 300).replace(/^[=+\-@]/, "'$&"); // stored as text, never a formula
+  if (p.form === 'ugc') {
+    if (!p.name || !p.brand || !p.email) return reply_();
+    append_(TABS.ugc, [new Date(), c(p.name), c(p.brand), c(p.email), c(p.content_type), c(p.timeline), c(p.message, 2000), 'New', c(p.page)]);
+    MailApp.sendEmail({
+      to: ALERT_EMAIL, replyTo: String(p.email).slice(0, 120),
+      subject: 'New UGC inquiry: ' + String(p.brand).slice(0, 80),
+      body: 'Name: ' + p.name + '\nBrand: ' + p.brand + '\nEmail: ' + p.email +
+            '\nContent type: ' + (p.content_type || '-') + '\nTimeline: ' + (p.timeline || '-') +
+            '\n\n' + String(p.message || '').slice(0, 2000) + '\n\nReply to this email to answer them directly.'
+    });
+    return reply_();
+  }
   if (!p.city || (!p.phone && !p.email)) return reply_();
+  append_(TABS.signup, [new Date(), c(p.first_name), c(p.phone), c(p.email), c(p.city), c(p.instagram),
+                        p.consent === 'yes' ? 'yes' : 'no', c(p.consent_text), c(p.page)]);
+  return reply_();
+}
+
+function append_(tab, row) {
   const lock = LockService.getScriptLock(); lock.waitLock(10000);
   try {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
-    const sh = ss.getSheetByName(TAB) || ss.insertSheet(TAB);
-    if (sh.getLastRow() === 0) { sh.appendRow(HEADERS); sh.setFrozenRows(1); }
-    const c = (v) => String(v || '').slice(0, 300).replace(/^[=+\-@]/, "'$&"); // stored as text, never a formula
-    sh.appendRow([new Date(), c(p.first_name), c(p.phone), c(p.email), c(p.city), c(p.instagram),
-                  p.consent === 'yes' ? 'yes' : 'no', c(p.consent_text), c(p.page)]);
+    const sh = ss.getSheetByName(tab.name) || ss.insertSheet(tab.name);
+    if (sh.getLastRow() === 0) { sh.appendRow(tab.headers); sh.setFrozenRows(1); }
+    sh.appendRow(row);
   } finally { lock.releaseLock(); }
-  return reply_();
 }
 
 function doGet() { return reply_(); }
