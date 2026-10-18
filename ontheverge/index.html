@@ -57,6 +57,20 @@
   .split img { flex:0 1 360px; width:360px; max-width:100%; border-radius:14px; display:block; }
   .split div { flex:1 1 380px; }
 
+
+  /* listen popup */
+  dialog.listen { border:0; padding:0; border-radius:24px; width:min(420px, calc(100vw - 32px)); background:#F4EBDB; color:#1A1714; box-shadow:0 30px 80px rgba(0,0,0,.6); }
+  dialog.listen::backdrop { background:rgba(15,12,10,.7); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .listen-head { display:flex; gap:16px; align-items:center; padding:20px 20px 12px; }
+  .listen-head img { width:72px; height:72px; border-radius:12px; object-fit:cover; flex:0 0 72px; }
+  .listen-head h2 { margin:0; font-family:'Instrument Serif', Georgia, serif; font-style:italic; font-weight:400; font-size:32px; line-height:1; }
+  .listen-head p { margin:4px 0 0; font-size:13px; color:#5B5246; }
+  .listen-close { margin-left:auto; align-self:flex-start; width:44px; height:44px; border-radius:50%; border:0; background:transparent; font-size:26px; line-height:1; cursor:pointer; color:#1A1714; }
+  .platforms { list-style:none; margin:0; padding:8px 12px 18px; display:grid; gap:6px; }
+  .platforms a { display:flex; align-items:center; gap:14px; min-height:56px; padding:0 16px; border-radius:14px; background:#fff; color:#1A1714; text-decoration:none; font-weight:800; font-size:17px; }
+  .platforms a:hover { background:#1A1714; color:#F4EBDB; }
+  .platforms .dot { width:28px; height:28px; border-radius:8px; flex:0 0 28px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:13px; }
+  .platforms .go { margin-left:auto; font-family:'DM Mono', monospace; font-weight:500; font-size:13px; opacity:.7; }
   footer { border-top:1px solid rgba(244,235,219,.18); }
   footer .wrap { padding-top:20px; padding-bottom:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; color:var(--dusk); }
   footer a { color:var(--dusk); }
@@ -78,7 +92,7 @@
     <div class="date mono">Nahoa Life · single · 9/17/2026</div>
   </div>
   <div class="cta">
-    <a class="btn solid" href="https://distrokid.com/hyperfollow/nahoalife/on-the-verge" target="_blank" rel="noopener">▶ Listen now</a>
+    <a class="btn solid" id="listenBtn" href="https://distrokid.com/hyperfollow/nahoalife/on-the-verge" target="_blank" rel="noopener" aria-haspopup="dialog">▶ Listen now</a>
     <a class="btn ghost" href="#video">Watch the video</a>
     <a class="btn ghost" href="https://drive.google.com/drive/folders/1n9-yxyLxOaW40TKuptlx8XIqssvaF4ZH?usp=drive_link" target="_blank" rel="noopener">Download materials</a>
   </div>
@@ -191,5 +205,30 @@ Oh, you prayed for hollow bones</p>
 </section>
 
 <footer><div class="wrap mono"><span>© nahoa life</span><span><a href="/epk/">press kit</a> · <a href="https://www.instagram.com/nahoalife/" target="_blank" rel="noopener">@nahoalife</a></span></div></footer>
+
+<dialog class="listen" id="listenDlg" aria-labelledby="listenTitle">
+  <div class="listen-head">
+    <img src="img/og.jpg" alt="">
+    <div><h2 id="listenTitle">On The Verge</h2><p class="mono">Nahoa Life · choose your platform</p></div>
+    <button class="listen-close" type="button" aria-label="Close">×</button>
+  </div>
+  <ul class="platforms">
+    <li><a href="https://open.spotify.com/album/1LS2CO90f8yfCsqBl4EKn5" target="_blank" rel="noopener"><span class="dot" style="background:#1DB954">♫</span>Spotify<span class="go">play ↗</span></a></li>
+    <li><a href="https://music.apple.com/us/album/on-the-verge-single/6810458130?uo=4" target="_blank" rel="noopener"><span class="dot" style="background:#FA2D48">♫</span>Apple Music<span class="go">play ↗</span></a></li>
+    <li><a href="https://music.youtube.com/watch?v=gnS0SjIQo30" target="_blank" rel="noopener"><span class="dot" style="background:#FF0000">♫</span>YouTube Music<span class="go">play ↗</span></a></li>
+    <li><a href="https://youtu.be/gnS0SjIQo30" target="_blank" rel="noopener"><span class="dot" style="background:#CC0000">▶</span>YouTube<span class="go">watch ↗</span></a></li>
+    <li><a href="https://www.amazon.com/gp/product/B0HJB2KBJY" target="_blank" rel="noopener"><span class="dot" style="background:#25D1DA">♫</span>Amazon Music<span class="go">play ↗</span></a></li>
+    <li><a href="https://music.apple.com/us/album/on-the-verge-single/6810458130?uo=4&amp;app=itunes" target="_blank" rel="noopener"><span class="dot" style="background:#B150E2">♫</span>iTunes<span class="go">buy ↗</span></a></li>
+  </ul>
+</dialog>
+<script>
+  (function () {
+    const btn = document.getElementById('listenBtn'), dlg = document.getElementById('listenDlg');
+    if (!dlg.showModal) return; // very old browsers: the button just opens the DistroKid page
+    btn.addEventListener('click', (e) => { e.preventDefault(); dlg.showModal(); });
+    dlg.querySelector('.listen-close').addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  })();
+</script>
 </body>
 </html>
