@@ -56,10 +56,15 @@
   .more a span { font-family:'DM Mono', monospace; font-weight:500; font-size:13px; opacity:.7; }
   .more a.hot { background:var(--cherry); border-color:var(--cherry); color:#fff; }
   /* community sign-up */
-  .join { margin-top:22px; padding:20px; border-radius:24px; background:var(--butter); color:var(--ink); }
+  .join { margin-top:22px; padding:18px 20px; border-radius:24px; background:var(--butter); color:var(--ink); }
   .join h2 { margin:0; font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:30px; line-height:1; letter-spacing:-.03em; text-transform:none; color:var(--ink); }
   .join h2 .serif { font-size:34px; letter-spacing:-.01em; }
-  .join .lede { margin:8px 0 14px; font-size:15px; }
+  .join .lede { margin:6px 0 0; font-size:15px; }
+  .join .toggle { margin-top:12px; }
+  .join .toggle .chev { display:inline-block; transition:transform .2s; }
+  .join .toggle[aria-expanded="true"] .chev { transform:rotate(180deg); }
+  .join form { margin-top:14px; }
+  .join form[hidden] { display:none; }
   .join .grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
   .join .full { grid-column:1 / -1; }
   .join label { display:block; font-family:'DM Mono', monospace; font-size:12px; margin-bottom:4px; }
@@ -111,7 +116,8 @@
   <section class="join" id="join" aria-labelledby="joinTitle">
     <h2 id="joinTitle">join my <span class="serif">community</span></h2>
     <p class="lede">Exclusive content, first word on shows, and new music before anyone else.</p>
-    <form id="joinForm" novalidate>
+    <button class="btn submit toggle" type="button" id="joinToggle" aria-expanded="false" aria-controls="joinForm">Sign me up <span class="chev" aria-hidden="true">▾</span></button>
+    <form id="joinForm" novalidate hidden>
       <div class="grid">
         <div><label for="j-name">first name</label><input id="j-name" name="first_name" type="text" autocomplete="given-name" maxlength="60"></div>
         <div><label for="j-city">city *</label><input id="j-city" name="city" type="text" autocomplete="address-level2" maxlength="80" required></div>
@@ -245,6 +251,11 @@
   /* community sign-up → Google Sheet (Apps Script web app) */
   const SIGNUP_URL = ''; // paste the Apps Script "Web app URL" here
   const form = document.getElementById('joinForm'), msg = document.getElementById('joinMsg');
+  const tog = document.getElementById('joinToggle');
+  tog.addEventListener('click', () => {
+    const open = form.hidden; form.hidden = !open; tog.setAttribute('aria-expanded', String(open));
+    if (open) document.getElementById('j-name').focus({ preventScroll: true });
+  });
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const f = form.elements, say = (t, err) => { msg.textContent = t; msg.className = 'msg' + (err ? ' err' : ''); };
