@@ -230,7 +230,8 @@
         </div>
       </div>
 
-      <form id="featureForm">
+      <form id="featureForm" novalidate>
+        <div class="hp" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <fieldset>
           <legend class="mono">what's this about?</legend>
           <div class="choices">
@@ -250,7 +251,7 @@
         </div>
         <label class="field mono">tell me more<textarea name="message" rows="4"></textarea></label>
         <button type="submit" class="go">Get Featured →</button>
-        <p class="note mono">Opens your email app with everything filled in.</p>
+        <p class="note mono" id="featureMsg" role="status" aria-live="polite">Goes straight to Nahoa. You'll hear back by email.</p>
       </form>
     </div>
   </div>
@@ -348,16 +349,25 @@
     }
   }).catch(() => {});
 
-  // Form: builds a pre-filled email until a form service is connected
-  document.getElementById('featureForm').addEventListener('submit', (e) => {
+  // Form → Google Sheet "Feature Requests" tab + email alert to nahoalifemusic@gmail.com
+  const FORM_URL = 'https://script.google.com/macros/s/AKfycbxL0BHtb4L_EjXdStrwhvAumnY3luFkCvBDZVB52rPBZU9LP-9K3WIHEGolrW03wFvlRA/exec';
+  const fform = document.getElementById('featureForm'), fmsg = document.getElementById('featureMsg');
+  fform.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const d = new FormData(e.target);
-    const subject = `Feature request: ${d.get('type')} — ${d.get('project') || d.get('name')}`;
-    const body = [
-      `Type: ${d.get('type')}`, `Name: ${d.get('name')}`, `Email: ${d.get('email')}`, `Role: ${d.get('role')}`,
-      `Artist / project: ${d.get('project')}`, `Date: ${d.get('date')}`, `Link: ${d.get('link')}`, '', d.get('message')
-    ].join('\n');
-    location.href = `mailto:nahoalifemusic@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const d = new FormData(fform), say = (t, err) => { fmsg.textContent = t; fmsg.style.color = err ? 'var(--cherry, #C8322B)' : ''; fmsg.style.fontWeight = err ? '800' : ''; };
+    const name = String(d.get('name') || '').trim(), email = String(d.get('email') || '').trim();
+    if (!name) { say('Add your name.', 1); fform.elements.name.focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say('Add a valid email.', 1); fform.elements.email.focus(); return; }
+    const btn = fform.querySelector('button.go'); btn.disabled = true; btn.textContent = 'Sending…';
+    const body = new URLSearchParams({ form: 'feature', type: d.get('type') || '', name, email, role: d.get('role') || '',
+      project: d.get('project') || '', date: d.get('date') || '', link: d.get('link') || '', message: d.get('message') || '',
+      website: d.get('website') || '', page: location.href });
+    try {
+      await fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body });
+      fform.innerHTML = '<div style="padding:24px 0"><h3 style="margin:0;font-size:clamp(36px,6vw,56px);line-height:.95;letter-spacing:-.03em">request sent.</h3><p style="margin:12px 0 0;font-size:18px">Thanks, ' + name.split(' ')[0].replace(/[<>&]/g, '') + '. Nahoa will reply to ' + email.replace(/[<>&]/g, '') + ' soon.</p></div>';
+    } catch (err) {
+      btn.disabled = false; btn.textContent = 'Get Featured →'; say('Something went wrong. Email nahoalifemusic@gmail.com instead.', 1);
+    }
   });
 </script>
 </body>

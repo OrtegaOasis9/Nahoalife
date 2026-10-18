@@ -1,13 +1,16 @@
 /**
  * Nahoa Life — website forms → this Google Sheet.
  *  - /music "join my community" → tab "Signups"
- *  - /content UGC inquiries      → tab "UGC Inquiries" + email alert
+ *  - /content UGC inquiries      → tab "UGC Inquiries" + email alert to nahoacontent@gmail.com
+ *  - /feature Get Featured       → tab "Feature Requests" + email alert to nahoalifemusic@gmail.com
  * After pasting: Deploy › Manage deployments › ✏️ › Version: New version › Deploy (keeps the same URL).
  */
 const ALERT_EMAIL = 'nahoacontent@gmail.com';
+const FEATURE_EMAIL = 'nahoalifemusic@gmail.com';
 const TABS = {
   signup: { name: 'Signups', headers: ['Timestamp', 'First name', 'Phone', 'Email', 'City', 'Instagram', 'Consent', 'Consent text', 'Page'] },
-  ugc:    { name: 'UGC Inquiries', headers: ['Timestamp', 'Name', 'Brand', 'Email', 'Content type', 'Timeline', 'Message', 'Status', 'Page'] }
+  ugc:    { name: 'UGC Inquiries', headers: ['Timestamp', 'Name', 'Brand', 'Email', 'Content type', 'Timeline', 'Message', 'Status', 'Page'] },
+  feature:{ name: 'Feature Requests', headers: ['Timestamp', 'Type', 'Name', 'Email', 'Role', 'Artist / project', 'Date', 'Link', 'Message', 'Status', 'Page'] }
 };
 
 function doPost(e) {
@@ -22,6 +25,19 @@ function doPost(e) {
       subject: 'New UGC inquiry: ' + String(p.brand).slice(0, 80),
       body: 'Name: ' + p.name + '\nBrand: ' + p.brand + '\nEmail: ' + p.email +
             '\nContent type: ' + (p.content_type || '-') + '\nTimeline: ' + (p.timeline || '-') +
+            '\n\n' + String(p.message || '').slice(0, 2000) + '\n\nReply to this email to answer them directly.'
+    });
+    return reply_();
+  }
+  if (p.form === 'feature') {
+    if (!p.name || !p.email) return reply_();
+    append_(TABS.feature, [new Date(), c(p.type), c(p.name), c(p.email), c(p.role), c(p.project), c(p.date), c(p.link, 500),
+                           c(p.message, 2000), 'New', c(p.page)]);
+    MailApp.sendEmail({
+      to: FEATURE_EMAIL, replyTo: String(p.email).slice(0, 120),
+      subject: 'Feature request: ' + String(p.type || '').slice(0, 40) + ' — ' + String(p.project || p.name).slice(0, 80),
+      body: 'Type: ' + (p.type || '-') + '\nName: ' + p.name + '\nEmail: ' + p.email + '\nRole: ' + (p.role || '-') +
+            '\nArtist / project: ' + (p.project || '-') + '\nDate: ' + (p.date || '-') + '\nLink: ' + (p.link || '-') +
             '\n\n' + String(p.message || '').slice(0, 2000) + '\n\nReply to this email to answer them directly.'
     });
     return reply_();
