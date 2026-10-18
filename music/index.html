@@ -250,7 +250,7 @@
   dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
 
   /* community sign-up → Google Sheet (Apps Script web app) */
-  const SIGNUP_URL = ''; // paste the Apps Script "Web app URL" here
+  const SIGNUP_URL = 'https://script.google.com/macros/s/AKfycbxL0BHtb4L_EjXdStrwhvAumnY3luFkCvBDZVB52rPBZU9LP-9K3WIHEGolrW03wFvlRA/exec'; // paste the Apps Script "Web app URL" here
   if (SIGNUP_URL) document.getElementById('join').hidden = false; // stays hidden until the sheet is connected
   const form = document.getElementById('joinForm'), msg = document.getElementById('joinMsg');
   const tog = document.getElementById('joinToggle');
