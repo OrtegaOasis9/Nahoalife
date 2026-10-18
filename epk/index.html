@@ -109,6 +109,24 @@
   .contact dl { margin:0 0 28px; display:grid; grid-template-columns:auto 1fr; gap:10px 20px; }
   .contact dt { color:var(--muted); font-size:15px; }
   .contact dd { margin:0; }
+  .bk { margin:0 0 40px; padding:28px clamp(18px,4vw,32px); background:var(--panel); border:1px solid var(--line); border-radius:20px; }
+  .bk h3 { margin:0 0 6px; font-family:Oswald, sans-serif; font-weight:600; font-size:24px; letter-spacing:.03em; text-transform:uppercase; color:#fff; }
+  .bk .lede { margin:0 0 20px; color:var(--muted); font-size:16px; }
+  .bk .fields { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .bk .full { grid-column:1 / -1; }
+  .bk label { display:block; font-size:13px; font-weight:600; color:var(--muted); margin-bottom:6px; letter-spacing:.02em; }
+  .bk input, .bk select, .bk textarea { width:100%; min-height:48px; padding:0 14px; border-radius:12px; border:1px solid #3A3946; background:#121212; color:var(--text); font:inherit; font-size:16px; }
+  .bk select { appearance:none; -webkit-appearance:none; background:#121212 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' stroke='%23B4B4C2' stroke-width='2' fill='none'/></svg>") no-repeat right 14px center; padding-right:38px; }
+  .bk input, .bk select, .bk textarea { color-scheme:dark; }
+  .bk textarea { min-height:120px; padding:12px 14px; resize:vertical; }
+  .bk :focus { outline:2px solid var(--accent); outline-offset:1px; }
+  .bk button { margin-top:18px; min-height:50px; padding:0 28px; border:0; border-radius:999px; background:var(--accent); color:#121212; font:inherit; font-weight:700; font-size:16px; cursor:pointer; }
+  .bk button:disabled { opacity:.6; }
+  .bk .msg { margin:12px 0 0; font-size:15px; font-weight:600; min-height:1px; }
+  .bk .msg.err { color:#FF8A80; }
+  .bk .hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  .bk .sent h3 { font-size:30px; }
+  @media (max-width:600px) { .bk .fields { grid-template-columns:1fr; } }
   footer { padding:32px 0 48px; color:var(--muted); font-size:13px; text-align:center; border-top:1px solid var(--line); }
 </style>
 </head>
@@ -193,6 +211,31 @@
 <section id="contact" class="contact">
   <div class="wrap">
     <h2>Contact</h2>
+    <div class="bk" id="bookingBox">
+      <h3>Booking &amp; press inquiry</h3>
+      <p class="lede">Shows, festivals, interviews and collaborations. Tell us what you have in mind.</p>
+      <form id="bookingForm" novalidate>
+        <div class="fields">
+          <div><label for="b-name">Your name *</label><input id="b-name" name="name" type="text" autocomplete="name" maxlength="80"></div>
+          <div><label for="b-email">Email *</label><input id="b-email" name="email" type="email" autocomplete="email" maxlength="120"></div>
+          <div><label for="b-org">Organization / outlet</label><input id="b-org" name="organization" type="text" autocomplete="organization" maxlength="100" placeholder="Venue, promoter, publication…"></div>
+          <div><label for="b-type">Inquiry type</label>
+            <select id="b-type" name="inquiry_type">
+              <option>Booking / live show</option>
+              <option>Festival</option>
+              <option>Press / interview</option>
+              <option>Collaboration</option>
+              <option>Other</option>
+            </select></div>
+          <div><label for="b-date">Event or deadline date</label><input id="b-date" name="date" type="date"></div>
+          <div><label for="b-loc">Location / venue</label><input id="b-loc" name="location" type="text" maxlength="120" placeholder="City or venue"></div>
+          <div class="full"><label for="b-msg">Details</label><textarea id="b-msg" name="message" maxlength="2000" placeholder="e.g. 30-minute set at our venue in Echo Park on Dec 12, $500 guarantee, backline provided."></textarea></div>
+        </div>
+        <div class="hp" aria-hidden="true"><label for="b-web">website</label><input id="b-web" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        <button type="submit">Send inquiry →</button>
+        <p class="msg" id="bookingMsg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
     <dl>
       <dt>Booking &amp; Press</dt><dd><a href="mailto:nahoalifemusic@gmail.com">nahoalifemusic@gmail.com</a></dd>
       <dt>Instagram</dt><dd><a href="https://www.instagram.com/nahoalife/" target="_blank" rel="noopener">@nahoalife</a></dd>
@@ -205,6 +248,26 @@
 <footer>© Nahoa Life</footer>
 
 <script>
+  // Booking & press form → Google Sheet "Booking & Press" tab + email alert to nahoalifemusic@gmail.com
+  (function () {
+    const URL_ = 'https://script.google.com/macros/s/AKfycbxL0BHtb4L_EjXdStrwhvAumnY3luFkCvBDZVB52rPBZU9LP-9K3WIHEGolrW03wFvlRA/exec';
+    const form = document.getElementById('bookingForm'), msg = document.getElementById('bookingMsg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = form.elements, say = (t, err) => { msg.textContent = t; msg.className = 'msg' + (err ? ' err' : ''); };
+      const name = f.name.value.trim(), email = f.email.value.trim();
+      if (!name) { say('Add your name.', 1); f.name.focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say('Add a valid email.', 1); f.email.focus(); return; }
+      const btn = form.querySelector('button'); btn.disabled = true; btn.textContent = 'Sending…'; say('');
+      try {
+        await fetch(URL_, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({ form: 'booking', name, email,
+          organization: f.organization.value.trim(), inquiry_type: f.inquiry_type.value, date: f.date.value,
+          location: f.location.value.trim(), message: f.message.value.trim(), website: f.website.value, page: location.href }) });
+        document.getElementById('bookingBox').innerHTML = '<div class="sent"><h3>Inquiry sent.</h3><p class="lede" style="margin:8px 0 0">Thanks, ' + name.split(' ')[0].replace(/[<>&]/g, '') + '. We\u2019ll reply to ' + email.replace(/[<>&]/g, '') + ' soon.</p></div>';
+      } catch (err) { btn.disabled = false; btn.textContent = 'Send inquiry →'; say('Something went wrong. Email nahoalifemusic@gmail.com instead.', 1); }
+    });
+  })();
+
   // Video order set by Rosario
   const VIDEOS = ['01-otv-promo','02-nim-vertical','03-friend-bridge-italy','04-overthink-bridge',
                   '05-ae6','06-ae12-postprom','07-ae15','08-otv-first','09-jesus-trump'];

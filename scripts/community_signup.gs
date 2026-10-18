@@ -3,6 +3,7 @@
  *  - /music "join my community" → tab "Community"
  *  - /content UGC inquiries      → tab "UGC Inquiries" + email alert to nahoacontent@gmail.com
  *  - /feature Get Featured       → tab "Feature Requests" + email alert to nahoalifemusic@gmail.com
+ *  - /epk booking & press        → tab "Booking & Press" + email alert to nahoalifemusic@gmail.com
  * After pasting: Deploy › Manage deployments › ✏️ › Version: New version › Deploy (keeps the same URL).
  */
 const ALERT_EMAIL = 'nahoacontent@gmail.com';
@@ -10,7 +11,8 @@ const FEATURE_EMAIL = 'nahoalifemusic@gmail.com';
 const TABS = {
   signup: { name: 'Community', headers: ['Timestamp', 'First name', 'Phone', 'Email', 'City', 'Instagram', 'Consent', 'Consent text', 'Page'] },
   ugc:    { name: 'UGC Inquiries', headers: ['Timestamp', 'Name', 'Brand', 'Email', 'Content type', 'Timeline', 'Message', 'Status', 'Page'] },
-  feature:{ name: 'Feature Requests', headers: ['Timestamp', 'Type', 'Name', 'Email', 'Role', 'Artist / project', 'Date', 'Link', 'Message', 'Status', 'Page'] }
+  feature:{ name: 'Feature Requests', headers: ['Timestamp', 'Type', 'Name', 'Email', 'Role', 'Artist / project', 'Date', 'Link', 'Message', 'Status', 'Page'] },
+  booking:{ name: 'Booking & Press', headers: ['Timestamp', 'Inquiry type', 'Name', 'Email', 'Organization', 'Date', 'Location', 'Message', 'Status', 'Page'] }
 };
 
 function doPost(e) {
@@ -38,6 +40,19 @@ function doPost(e) {
       subject: 'Feature request: ' + String(p.type || '').slice(0, 40) + ' — ' + String(p.project || p.name).slice(0, 80),
       body: 'Type: ' + (p.type || '-') + '\nName: ' + p.name + '\nEmail: ' + p.email + '\nRole: ' + (p.role || '-') +
             '\nArtist / project: ' + (p.project || '-') + '\nDate: ' + (p.date || '-') + '\nLink: ' + (p.link || '-') +
+            '\n\n' + String(p.message || '').slice(0, 2000) + '\n\nReply to this email to answer them directly.'
+    });
+    return reply_();
+  }
+  if (p.form === 'booking') {
+    if (!p.name || !p.email) return reply_();
+    append_(TABS.booking, [new Date(), c(p.inquiry_type), c(p.name), c(p.email), c(p.organization), c(p.date), c(p.location),
+                           c(p.message, 2000), 'New', c(p.page)]);
+    MailApp.sendEmail({
+      to: FEATURE_EMAIL, replyTo: String(p.email).slice(0, 120),
+      subject: String(p.inquiry_type || 'Booking').slice(0, 40) + ' inquiry: ' + String(p.organization || p.name).slice(0, 80),
+      body: 'Inquiry type: ' + (p.inquiry_type || '-') + '\nName: ' + p.name + '\nEmail: ' + p.email +
+            '\nOrganization: ' + (p.organization || '-') + '\nDate: ' + (p.date || '-') + '\nLocation: ' + (p.location || '-') +
             '\n\n' + String(p.message || '').slice(0, 2000) + '\n\nReply to this email to answer them directly.'
     });
     return reply_();
