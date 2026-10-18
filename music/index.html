@@ -64,7 +64,7 @@
   .join .toggle .chev { display:inline-block; transition:transform .2s; }
   .join .toggle[aria-expanded="true"] .chev { transform:rotate(180deg); }
   .join form { margin-top:14px; }
-  .join form[hidden] { display:none; }
+  .join form[hidden], .join[hidden] { display:none; }
   .join .grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
   .join .full { grid-column:1 / -1; }
   .join label { display:block; font-family:'DM Mono', monospace; font-size:12px; margin-bottom:4px; }
@@ -153,7 +153,7 @@
     </div>
   </article>
 
-  <section class="join" id="join" aria-labelledby="joinTitle">
+  <section class="join" id="join" aria-labelledby="joinTitle" hidden>
     <h2 id="joinTitle">join my <span class="serif">community</span></h2>
     <p class="lede">Exclusive content, first word on shows, and new music before anyone else.</p>
     <button class="btn submit toggle" type="button" id="joinToggle" aria-expanded="false" aria-controls="joinForm">Sign me up <span class="chev" aria-hidden="true">▾</span></button>
@@ -251,6 +251,7 @@
 
   /* community sign-up → Google Sheet (Apps Script web app) */
   const SIGNUP_URL = ''; // paste the Apps Script "Web app URL" here
+  if (SIGNUP_URL) document.getElementById('join').hidden = false; // stays hidden until the sheet is connected
   const form = document.getElementById('joinForm'), msg = document.getElementById('joinMsg');
   const tog = document.getElementById('joinToggle');
   tog.addEventListener('click', () => {
