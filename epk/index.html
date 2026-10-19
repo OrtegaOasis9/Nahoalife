@@ -10,8 +10,10 @@
 <meta property="og:image" content="https://www.nahoalife.com/epk/img/photos/hero-7424.jpg">
 <link rel="canonical" href="https://www.nahoalife.com/epk/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/sitenav.css">
 <style>
   :root {
     --bg:#121212; --panel:#1B1A22; --purple:#4C297C; --purple-2:#3B2263;
@@ -31,8 +33,9 @@
 
   /* Nav */
   nav { position:sticky; top:0; z-index:20; background:rgba(18,18,18,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
-  nav .wrap { display:flex; gap:22px; overflow-x:auto; padding-top:14px; padding-bottom:14px; scrollbar-width:none; }
-  nav .wrap::-webkit-scrollbar { display:none; }
+  nav .wrap { display:flex; align-items:center; gap:14px; padding-top:8px; padding-bottom:8px; }
+  nav .sec { display:flex; gap:22px; overflow-x:auto; flex:1; min-width:0; scrollbar-width:none; }
+  nav .sec::-webkit-scrollbar { display:none; }
   nav a { color:var(--muted); font-size:14px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; }
   nav a:hover { color:#fff; text-decoration:none; }
   nav a.home { color:#fff; padding-right:22px; border-right:1px solid var(--line); }
@@ -147,7 +150,8 @@
 
 <nav aria-label="Sections">
   <div class="wrap">
-    <a href="/" class="home" aria-label="Back to the nahoalife.com home page">← Home</a><a href="#bio">Bio</a><a href="#videos">Videos</a><a href="#music">Music</a><a href="#photos">Photos</a><a href="#contact">Contact</a>
+    <div class="sec"><a href="#bio">Bio</a><a href="#videos">Videos</a><a href="#music">Music</a><a href="#photos">Photos</a><a href="#contact">Contact</a></div>
+    <div data-sitenav></div>
   </div>
 </nav>
 
@@ -321,5 +325,6 @@
   layout();
 </script>
 <script>/* email shown to people, hidden from address-scraping bots */ document.querySelectorAll("a.em").forEach(function (a) { var e = a.dataset.u + "@" + "gmail" + ".com"; a.href = "mailto:" + e; a.textContent = e; });</script>
+<script src="/assets/sitenav.js" defer></script>
 </body>
 </html>

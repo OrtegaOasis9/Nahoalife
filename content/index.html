@@ -11,6 +11,7 @@
 <meta property="og:image" content="https://www.nahoalife.com/content/media/austrian-audio.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/sitenav.css">
 <style>
   :root { --paper:#F1ECE2; --ink:#151515; --cobalt:#2341C9; --butter:#F3D36B; --cherry:#C8322B; }
   * { box-sizing:border-box; }
@@ -103,12 +104,9 @@
 <body>
 
 <header class="wrap">
-  <div class="top mono">
+  <div class="top mono sn-ink">
     <a class="pill-url" href="/">nahoalife.com/content</a>
-    <nav aria-label="Sections">
-      <a href="#ugc">ugc</a>
-      <a href="#contact" class="cta">let's work</a>
-    </nav>
+    <div style="display:flex;gap:8px;align-items:center"><nav aria-label="Sections"><a href="#contact" class="cta">let's work</a></nav><div data-sitenav data-tapin="off"></div></div>
   </div>
 
   <div class="hero">
@@ -247,5 +245,6 @@
   }).catch(() => {});
 </script>
 <script>/* email shown to people, hidden from address-scraping bots */ document.querySelectorAll("a.em").forEach(function (a) { var e = a.dataset.u + "@" + "gmail" + ".com"; a.href = "mailto:" + e; a.textContent = e; });</script>
+<script src="/assets/sitenav.js" defer></script>
 </body>
 </html>

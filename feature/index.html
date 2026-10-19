@@ -11,6 +11,7 @@
 <meta property="og:image" content="https://www.nahoalife.com/feature/img/studio.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/sitenav.css">
 <style>
   :root { --paper:#F1ECE2; --ink:#151515; --cobalt:#2341C9; --butter:#F3D36B; --cherry:#C8322B; --white:#FFFFFF; }
   * { box-sizing:border-box; }
@@ -141,14 +142,9 @@
 <body>
 
 <header class="wrap">
-  <div class="top mono">
+  <div class="top mono sn-ink">
     <a class="pill-url" href="/" style="text-decoration:none" aria-label="Back to the nahoalife.com home page">← nahoalife.com</a>
-    <nav aria-label="Sections">
-      <a href="#about">about</a>
-      <a href="#features">features</a>
-      <a href="#photos">photos</a>
-      <a href="#contact" class="cta">get featured</a>
-    </nav>
+    <div data-sitenav></div>
   </div>
 
   <div class="hero">
@@ -371,5 +367,6 @@
   });
 </script>
 <script>/* email shown to people, hidden from address-scraping bots */ document.querySelectorAll("a.em").forEach(function (a) { var e = a.dataset.u + "@" + "gmail" + ".com"; a.href = "mailto:" + e; a.textContent = e; });</script>
+<script src="/assets/sitenav.js" defer></script>
 </body>
 </html>

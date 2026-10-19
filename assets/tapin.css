@@ -26,6 +26,3 @@
 .join .done p { margin:6px 0 0; }
 @media (max-width:420px) { .join .grid { grid-template-columns:1fr; } }
 
-/* small "Tap in ↓" pill for the top of song pages: <a href="#community" class="tapin-pill" data-tapin-open>tap in ↓</a> */
-.tapin-pill { background:#F3D36B !important; color:#151515 !important; border-color:#F3D36B !important; font-weight:500; }
-.tapin-pill:hover { filter:brightness(1.06); }

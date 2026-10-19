@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/tapin.css">
+<link rel="stylesheet" href="/assets/sitenav.css">
 <style>
   :root { --sky:#EFE3C8; --dusk:#D9C7A3; --field:#2B2620; --soil:#1A1714; --ink:#F4EBDB; --butter:#F3D36B; --cherry:#C8322B; }
   * { box-sizing:border-box; }
@@ -25,9 +26,6 @@
   /* top bar */
   .top { position:absolute; inset:0 0 auto 0; z-index:3; display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; padding:20px clamp(18px, 4vw, 40px); font-size:14px; }
   .top a.home { color:#2B2620; text-decoration:none; }
-  .top nav { display:flex; gap:8px; flex-wrap:wrap; }
-  .top nav a { display:inline-flex; align-items:center; min-height:44px; padding:0 16px; border-radius:999px; border:1.5px solid rgba(43,38,32,.55); color:#2B2620; text-decoration:none; background:rgba(239,227,200,.4); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); }
-  .top nav a:hover { background:#2B2620; color:var(--sky); }
 
   /* hero: the field photo, sky on top, title in the sky */
   .hero { position:relative; min-height:100vh; min-height:100svh; background:var(--sky) url(img/field.jpg) center 60% / cover no-repeat; display:flex; flex-direction:column; justify-content:flex-start; }
@@ -83,15 +81,9 @@
 <body>
 
 <header class="hero">
-  <div class="top mono">
+  <div class="top mono sn-ink">
     <a class="home" href="/">nahoalife.com</a>
-    <nav aria-label="Main">
-      <a href="#community" class="tapin-pill" data-tapin-open>tap in ↓</a>
-      <a href="/">home</a>
-      <a href="/epk/">epk</a>
-      <a href="/epk/#contact">booking inquiries</a>
-      <a href="/feature/">get featured</a>
-    </nav>
+    <div data-sitenav></div>
   </div>
   <div class="hero-text">
     <h1 class="serif">“On The<br>Verge”</h1>
@@ -238,6 +230,7 @@ Oh, you prayed for hollow bones</p>
   })();
 </script>
 <script>/* email shown to people, hidden from address-scraping bots */ document.querySelectorAll("a.em").forEach(function (a) { var e = a.dataset.u + "@" + "gmail" + ".com"; a.href = "mailto:" + e; a.textContent = e; });</script>
+<script src="/assets/sitenav.js" defer></script>
 <script src="/assets/tapin.js" defer></script>
 </body>
 </html>

@@ -13,6 +13,7 @@
 <link rel="preload" as="image" href="img/home.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/sitenav.css">
 <style>
   :root { --paper:#F1ECE2; --ink:#140F0B; --butter:#F3D36B; --cherry:#C8322B; }
   * { box-sizing:border-box; }
@@ -85,12 +86,7 @@
   <main class="stage">
     <header>
       <a class="mark" href="/">nahoalife.com</a>
-      <nav aria-label="Main">
-        <a href="/music/">listen</a>
-        <a href="/epk/">epk</a>
-        <a href="https://www.instagram.com/nahoalife/" target="_blank" rel="noopener">instagram</a>
-        <a href="/feature/" class="hot">get featured</a>
-      </nav>
+      <div data-sitenav></div>
     </header>
 
     <h1><span class="a">nahoa</span><span class="b">life</span></h1>
@@ -100,5 +96,6 @@
       <p class="now">new single “On The Verge” — <a href="/ontheverge/" style="color:var(--butter)">out now →</a></p>
     </div>
   </main>
+<script src="/assets/sitenav.js" defer></script>
 </body>
 </html>
