@@ -21,17 +21,19 @@
 
   /* layered photo: a big soft wash behind, a drifting, less-blurred copy on top */
   .bg, .bg-sharp { position:fixed; inset:-8%; background:url(img/home.jpg) center 40% / cover no-repeat; }
-  .bg { filter:blur(28px) saturate(1.35) brightness(.7); transform:scale(1.15); }
+  .bg { filter:blur(28px) saturate(1.35) brightness(.7); transform:scale(1.15) translateZ(0); }
   .bg-sharp {
     filter:blur(3px) saturate(1.2) contrast(1.05) brightness(.9);
     -webkit-mask-image:radial-gradient(ellipse 55% 60% at 55% 48%, #000 35%, transparent 75%);
             mask-image:radial-gradient(ellipse 55% 60% at 55% 48%, #000 35%, transparent 75%);
     animation:drift 26s ease-in-out infinite alternate;
+    will-change:transform; transform:translateZ(0); backface-visibility:hidden;
   }
+  /* only the position moves; the blur stays fixed (animating blur makes phones flicker) */
   @keyframes drift {
-    0%   { transform:scale(1.04) translate(0, 0); filter:blur(3px) saturate(1.2) brightness(.9); }
-    50%  { transform:scale(1.10) translate(-1.5%, 1%); filter:blur(6px) saturate(1.35) brightness(.95); }
-    100% { transform:scale(1.06) translate(1.2%, -1%); filter:blur(2px) saturate(1.15) brightness(.88); }
+    0%   { transform:translateZ(0) scale(1.04) translate(0, 0); }
+    50%  { transform:translateZ(0) scale(1.10) translate(-1.5%, 1%); }
+    100% { transform:translateZ(0) scale(1.06) translate(1.2%, -1%); }
   }
   /* warm light leak + grain + vignette */
   .leak { position:fixed; inset:0; pointer-events:none; mix-blend-mode:screen;
@@ -62,6 +64,11 @@
   .now { opacity:.75; }
 
   @media (prefers-reduced-motion: reduce) { .bg-sharp, .grain { animation:none; } }
+  /* phones and in-app browsers (Instagram, TikTok): keep the grain still and the photo drift gentle */
+  @media (hover: none), (max-width: 820px) {
+    .grain { animation:none; inset:0; }
+    .bg-sharp { animation-duration:40s; }
+  }
   @media (max-width:640px) {
     .bg-sharp { -webkit-mask-image:radial-gradient(ellipse 90% 60% at 55% 45%, #000 40%, transparent 80%); mask-image:radial-gradient(ellipse 90% 60% at 55% 45%, #000 40%, transparent 80%); }
     header { flex-direction:column; align-items:flex-start; }
