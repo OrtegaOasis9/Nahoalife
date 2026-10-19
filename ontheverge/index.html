@@ -235,7 +235,7 @@ Oh, you prayed for hollow bones</p>
         <p class="msg" id="bookingMsg" role="status" aria-live="polite"></p>
       </form>
       </div>
-      <p class="alt">or email <a href="mailto:nahoalifemusic@gmail.com">nahoalifemusic@gmail.com</a></p>
+      <p class="alt">or email <a class="em" href="#" data-u="nahoalifemusic">nahoalifemusic [at] gmail.com</a></p>
     </div>
   </div>
 </section>
@@ -278,7 +278,7 @@ Oh, you prayed for hollow bones</p>
           organization: f.organization.value.trim(), inquiry_type: f.inquiry_type.value, date: f.date.value,
           location: f.location.value.trim(), message: f.message.value.trim(), website: f.website.value, page: location.href }) });
         document.getElementById('bookingBox').innerHTML = '<div style="padding:8px 0"><p style="margin:0;font-weight:800;font-size:30px;line-height:1.1">Inquiry sent.</p><p style="margin:8px 0 0;color:#E6DAC4">Thanks, ' + name.split(' ')[0].replace(/[<>&]/g, '') + '. We\u2019ll reply to ' + email.replace(/[<>&]/g, '') + ' soon.</p></div>';
-      } catch (err) { btn.disabled = false; btn.textContent = 'Send inquiry →'; say('Something went wrong. Email nahoalifemusic@gmail.com instead.', 1); }
+      } catch (err) { btn.disabled = false; btn.textContent = 'Send inquiry →'; say('Something went wrong. Please try again or use the email link below.', 1); }
     });
   })();
 
@@ -290,5 +290,6 @@ Oh, you prayed for hollow bones</p>
     dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
   })();
 </script>
+<script>/* email shown to people, hidden from address-scraping bots */ document.querySelectorAll("a.em").forEach(function (a) { var e = a.dataset.u + "@" + "gmail" + ".com"; a.href = "mailto:" + e; a.textContent = e; });</script>
 </body>
 </html>

@@ -174,7 +174,7 @@
       </div>
       <p class="or mono">or reach out directly</p>
       <div class="links inline">
-        <a class="main" href="mailto:nahoacontent@gmail.com">nahoacontent@gmail.com</a>
+        <a class="em main" href="#" data-u="nahoacontent">nahoacontent [at] gmail.com</a>
         <a href="tel:+15629663177">(562) 966-3177</a>
         <a href="https://www.instagram.com/nahoalife/" target="_blank" rel="noopener">@nahoalife</a>
       </div>
@@ -202,7 +202,7 @@
           form: 'ugc', name, brand, email, content_type: f.content_type.value, timeline: f.timeline.value,
           message: f.message.value.trim(), website: f.website.value, page: location.href }) });
         document.getElementById('ugcWrap').innerHTML = '<div class="sent"><h3>got it, ' + name.split(' ')[0].replace(/[<>&]/g, '') + '.</h3><p>Thanks for reaching out. I\u2019ll get back to you at ' + email.replace(/[<>&]/g, '') + ' within 48 hours.</p></div>';
-      } catch (err) { btn.disabled = false; btn.textContent = 'Send inquiry →'; say('Something went wrong. Email nahoacontent@gmail.com instead.', 1); }
+      } catch (err) { btn.disabled = false; btn.textContent = 'Send inquiry →'; say('Something went wrong. Please try again or use the email link below.', 1); }
     });
   })();
 
@@ -246,5 +246,6 @@
     if (s.channel_views) document.querySelector('[data-stat="views"]').textContent = floorFmt(s.channel_views) + '+';
   }).catch(() => {});
 </script>
+<script>/* email shown to people, hidden from address-scraping bots */ document.querySelectorAll("a.em").forEach(function (a) { var e = a.dataset.u + "@" + "gmail" + ".com"; a.href = "mailto:" + e; a.textContent = e; });</script>
 </body>
 </html>

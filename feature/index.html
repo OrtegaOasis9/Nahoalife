@@ -224,7 +224,7 @@
         <h2>feature <span class="serif">your artist.</span></h2>
         <p>Hire me to create a feature reel, interview or campaign around your music. Tell me about the project and I'll get back to you with ideas and rates.</p>
         <div class="contact-links mono">
-          <a href="mailto:nahoalifemusic@gmail.com">nahoalifemusic@gmail.com</a>
+          <a class="em" href="#" data-u="nahoalifemusic">nahoalifemusic [at] gmail.com</a>
           <a href="https://www.instagram.com/nahoalife/">@nahoalife</a>
           <a href="https://www.nahoalife.com/epk/">press kit</a>
         </div>
@@ -349,7 +349,7 @@
     }
   }).catch(() => {});
 
-  // Form → Google Sheet "Feature Requests" tab + email alert to nahoalifemusic@gmail.com
+  // Form → Google Sheet "Feature Requests" tab + email alert to the music inbox
   const FORM_URL = 'https://script.google.com/macros/s/AKfycbxL0BHtb4L_EjXdStrwhvAumnY3luFkCvBDZVB52rPBZU9LP-9K3WIHEGolrW03wFvlRA/exec';
   const fform = document.getElementById('featureForm'), fmsg = document.getElementById('featureMsg');
   fform.addEventListener('submit', async (e) => {
@@ -366,9 +366,10 @@
       await fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body });
       fform.innerHTML = '<div style="padding:24px 0"><h3 style="margin:0;font-size:clamp(36px,6vw,56px);line-height:.95;letter-spacing:-.03em">request sent.</h3><p style="margin:12px 0 0;font-size:18px">Thanks, ' + name.split(' ')[0].replace(/[<>&]/g, '') + '. Nahoa will reply to ' + email.replace(/[<>&]/g, '') + ' soon.</p></div>';
     } catch (err) {
-      btn.disabled = false; btn.textContent = 'Get Featured →'; say('Something went wrong. Email nahoalifemusic@gmail.com instead.', 1);
+      btn.disabled = false; btn.textContent = 'Get Featured →'; say('Something went wrong. Please try again or use the email link above.', 1);
     }
   });
 </script>
+<script>/* email shown to people, hidden from address-scraping bots */ document.querySelectorAll("a.em").forEach(function (a) { var e = a.dataset.u + "@" + "gmail" + ".com"; a.href = "mailto:" + e; a.textContent = e; });</script>
 </body>
 </html>
