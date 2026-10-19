@@ -1,0 +1,31 @@
+/* Shared "Tap In" community sign-up card — used on /music and every song page.
+   Self-contained: no page variables needed. Mount with <div data-tapin></div> + assets/tapin.js */
+.join { scroll-margin-top:16px; margin-top:34px; padding:18px 20px; border-radius:24px; background:#F3D36B; color:#151515; font-family:'Bricolage Grotesque', system-ui, sans-serif; font-size:17px; line-height:1.5; text-align:left; }
+.join h2 { margin:0; font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:30px; line-height:1; letter-spacing:-.03em; text-transform:none; color:#151515; }
+.join h2 .serif { font-family:'Instrument Serif', Georgia, serif; font-style:italic; font-weight:400; font-size:34px; letter-spacing:-.01em; }
+.join .lede { margin:6px 0 0; font-size:15px; color:#151515; }
+.join .btn { display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:0 18px; border-radius:999px; font-weight:800; text-decoration:none; border:0; cursor:pointer; font-family:inherit; }
+.join .submit { width:100%; margin-top:14px; min-height:52px; background:#151515; color:#F3D36B; font-size:17px; }
+.join .submit:disabled { opacity:.6; }
+.join .toggle { margin-top:12px; }
+.join .toggle .chev { display:inline-block; transition:transform .2s; }
+.join .toggle[aria-expanded="true"] .chev { transform:rotate(180deg); }
+.join form { margin-top:14px; }
+.join form[hidden], .join[hidden] { display:none; }
+.join .grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.join .full { grid-column:1 / -1; }
+.join label { display:block; font-family:'DM Mono', monospace; font-size:12px; margin-bottom:4px; color:#151515; text-transform:none; letter-spacing:0; }
+.join input[type=text], .join input[type=tel], .join input[type=email] { width:100%; min-height:48px; padding:0 14px; border-radius:12px; border:1.5px solid rgba(21,21,21,.25); background:#FFFBEF; color:#151515; font:inherit; font-size:16px; }
+.join input:focus { outline:2px solid #2341C9; outline-offset:1px; border-color:#2341C9; }
+.join .consent { display:flex; gap:10px; align-items:flex-start; margin:14px 0 0; font-family:inherit; font-size:12px; line-height:1.45; }
+.join .consent input { width:22px; height:22px; flex:0 0 22px; margin:1px 0 0; accent-color:#2341C9; }
+.join .msg { margin:10px 0 0; font-size:14px; font-weight:800; min-height:1px; }
+.join .msg.err { color:#C8322B; }
+.join .hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.join .done { text-align:center; padding:18px 0 6px; }
+.join .done p { margin:6px 0 0; }
+@media (max-width:420px) { .join .grid { grid-template-columns:1fr; } }
+
+/* small "Tap in ↓" pill for the top of song pages: <a href="#community" class="tapin-pill" data-tapin-open>tap in ↓</a> */
+.tapin-pill { background:#F3D36B !important; color:#151515 !important; border-color:#F3D36B !important; font-weight:500; }
+.tapin-pill:hover { filter:brightness(1.06); }

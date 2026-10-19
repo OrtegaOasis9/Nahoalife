@@ -11,6 +11,7 @@
 <meta property="og:image" content="https://www.nahoalife.com/ontheverge/img/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/tapin.css">
 <style>
   :root { --sky:#EFE3C8; --dusk:#D9C7A3; --field:#2B2620; --soil:#1A1714; --ink:#F4EBDB; --butter:#F3D36B; --cherry:#C8322B; }
   * { box-sizing:border-box; }
@@ -41,21 +42,9 @@
   .btn:hover { filter:brightness(1.08); }
 
   section { padding:80px 0; }
-  .bk { margin-top:8px; }
-  .bk .fields { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  .bk .full { grid-column:1 / -1; }
-  .bk label { display:block; font-family:'DM Mono', monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--dusk); margin-bottom:6px; }
-  .bk input, .bk select, .bk textarea { width:100%; min-height:48px; padding:0 14px; border-radius:12px; border:1.5px solid rgba(244,235,219,.25); background:#221E1A; color:var(--ink); font:inherit; font-size:16px; color-scheme:dark; }
-  .bk select { appearance:none; -webkit-appearance:none; background:#221E1A url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' stroke='%23D9C7A3' stroke-width='2' fill='none'/></svg>") no-repeat right 14px center; padding-right:38px; }
-  .bk textarea { min-height:110px; padding:12px 14px; resize:vertical; }
-  .bk :focus { outline:2px solid var(--butter); outline-offset:1px; }
-  .bk button { margin-top:16px; border:0; cursor:pointer; font-family:inherit; }
-  .bk button:disabled { opacity:.6; }
-  .bk .msg { margin:10px 0 0; font-weight:800; font-size:15px; min-height:1px; }
-  .bk .msg.err { color:#FF8A80; }
-  .bk .hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
-  .bk .alt { margin:16px 0 0; font-size:15px; color:#E6DAC4; }
-  @media (max-width:600px) { .bk .fields { grid-template-columns:1fr; } }
+  .split .join { margin-top:0; }
+  @media (max-width:600px) { .hero-text { padding-top:170px; } }
+  .alt { margin:16px 0 0; font-size:15px; color:#E6DAC4; }
   .credits { font-size:clamp(18px, 2vw, 22px); line-height:1.6; max-width:880px; color:#E6DAC4; }
   .credits b { color:var(--ink); font-weight:800; }
   .label { font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--dusk); margin:0 0 14px; }
@@ -97,8 +86,10 @@
   <div class="top mono">
     <a class="home" href="/">nahoalife.com</a>
     <nav aria-label="Main">
+      <a href="#community" class="tapin-pill" data-tapin-open>tap in ↓</a>
       <a href="/">home</a>
       <a href="/epk/">epk</a>
+      <a href="/epk/#contact">booking inquiries</a>
       <a href="/feature/">get featured</a>
     </nav>
   </div>
@@ -207,35 +198,10 @@ Oh, you prayed for hollow bones</p>
 
 <section style="padding-top:20px">
   <div class="wrap split">
-    <img src="img/field-2.jpg" alt="Nahoa standing alone in a dry field at dusk" loading="lazy">
+    <img src="img/field-2.jpg" alt="Nahoa standing alone in a dry field at dusk" width="900" height="1600" style="height:auto" loading="lazy">
     <div>
-      <p class="label mono">booking &amp; press</p>
-      <p style="margin:0 0 22px; font-size:20px; color:#E6DAC4">Shows, press, playlisting or collaborations. Tell us what you have in mind.</p>
-      <div class="bk" id="bookingBox">
-      <form id="bookingForm" novalidate>
-        <div class="fields">
-          <div><label for="b-name">Your name *</label><input id="b-name" name="name" type="text" autocomplete="name" maxlength="80"></div>
-          <div><label for="b-email">Email *</label><input id="b-email" name="email" type="email" autocomplete="email" maxlength="120"></div>
-          <div><label for="b-org">Organization / outlet</label><input id="b-org" name="organization" type="text" autocomplete="organization" maxlength="100" placeholder="Venue, playlist, publication…"></div>
-          <div><label for="b-type">Inquiry type</label>
-            <select id="b-type" name="inquiry_type">
-              <option>Booking / live show</option>
-              <option>Festival</option>
-              <option>Press / interview</option>
-              <option>Playlist / radio</option>
-              <option>Collaboration</option>
-              <option>Other</option>
-            </select></div>
-          <div><label for="b-date">Event or deadline date</label><input id="b-date" name="date" type="date"></div>
-          <div><label for="b-loc">Location / venue</label><input id="b-loc" name="location" type="text" maxlength="120" placeholder="City or venue"></div>
-          <div class="full"><label for="b-msg">Details</label><textarea id="b-msg" name="message" maxlength="2000" placeholder="e.g. We'd love to add On The Verge to our weekly indie playlist and do a short interview."></textarea></div>
-        </div>
-        <div class="hp" aria-hidden="true"><label for="b-web">website</label><input id="b-web" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-        <button type="submit" class="btn solid">Send inquiry →</button>
-        <p class="msg" id="bookingMsg" role="status" aria-live="polite"></p>
-      </form>
-      </div>
-      <p class="alt">or email <a class="em" href="#" data-u="nahoalifemusic">nahoalifemusic [at] gmail.com</a></p>
+      <div data-tapin></div>
+      <p class="alt">booking or press? <a href="/epk/#contact">send an inquiry →</a></p>
       <p class="alt" style="margin-top:6px">follow <a href="https://www.instagram.com/nahoalife/" target="_blank" rel="noopener">@nahoalife</a> on Instagram</p>
     </div>
   </div>
@@ -263,26 +229,6 @@ Oh, you prayed for hollow bones</p>
   </ul>
 </dialog>
 <script>
-  // Booking & press form → same "Booking & Press" tab + email alert as the EPK
-  (function () {
-    const URL_ = 'https://script.google.com/macros/s/AKfycbxL0BHtb4L_EjXdStrwhvAumnY3luFkCvBDZVB52rPBZU9LP-9K3WIHEGolrW03wFvlRA/exec';
-    const form = document.getElementById('bookingForm'), msg = document.getElementById('bookingMsg');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const f = form.elements, say = (t, err) => { msg.textContent = t; msg.className = 'msg' + (err ? ' err' : ''); };
-      const name = f.name.value.trim(), email = f.email.value.trim();
-      if (!name) { say('Add your name.', 1); f.name.focus(); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say('Add a valid email.', 1); f.email.focus(); return; }
-      const btn = form.querySelector('button'); btn.disabled = true; btn.textContent = 'Sending…'; say('');
-      try {
-        await fetch(URL_, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({ form: 'booking', name, email,
-          organization: f.organization.value.trim(), inquiry_type: f.inquiry_type.value, date: f.date.value,
-          location: f.location.value.trim(), message: f.message.value.trim(), website: f.website.value, page: location.href }) });
-        document.getElementById('bookingBox').innerHTML = '<div style="padding:8px 0"><p style="margin:0;font-weight:800;font-size:30px;line-height:1.1">Inquiry sent.</p><p style="margin:8px 0 0;color:#E6DAC4">Thanks, ' + name.split(' ')[0].replace(/[<>&]/g, '') + '. We\u2019ll reply to ' + email.replace(/[<>&]/g, '') + ' soon.</p></div>';
-      } catch (err) { btn.disabled = false; btn.textContent = 'Send inquiry →'; say('Something went wrong. Please try again or use the email link below.', 1); }
-    });
-  })();
-
   (function () {
     const btn = document.getElementById('listenBtn'), dlg = document.getElementById('listenDlg');
     if (!dlg.showModal) return; // very old browsers: the button just opens the DistroKid page
@@ -292,5 +238,6 @@ Oh, you prayed for hollow bones</p>
   })();
 </script>
 <script>/* email shown to people, hidden from address-scraping bots */ document.querySelectorAll("a.em").forEach(function (a) { var e = a.dataset.u + "@" + "gmail" + ".com"; a.href = "mailto:" + e; a.textContent = e; });</script>
+<script src="/assets/tapin.js" defer></script>
 </body>
 </html>
