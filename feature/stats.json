@@ -1,29 +1,32 @@
 {
- "updated": "2026-10-18",
- "followers": 15646,
+ "updated": "2026-10-19",
+ "followers": 15660,
+ "media_count": 234,
+ "channel_views": 2611210,
+ "channel_views_complete": false,
  "posts": {
   "DekfFEZyaKx": {
-   "likes": 2563,
-   "comments": 33,
-   "views": 18459,
-   "shares": 354
+   "likes": 3398,
+   "comments": 41,
+   "views": 24573,
+   "shares": 475
   },
   "DeSokGZAlJU": {
-   "likes": 2402,
+   "likes": 2442,
    "comments": 17,
-   "views": 33974,
-   "shares": 216
+   "views": 34421,
+   "shares": 217
   },
   "Dd1p34xAdlW": {
-   "likes": 3085,
-   "comments": 18,
-   "views": 28931,
-   "shares": 251
+   "likes": 3116,
+   "comments": 20,
+   "views": 29256,
+   "shares": 254
   },
   "DbCav1DAcQv": {
    "likes": 461,
    "comments": 5,
-   "views": 11511,
+   "views": 11512,
    "shares": 62
   },
   "DXlS1vmgOhd": {
@@ -33,39 +36,39 @@
    "shares": 49
   },
   "DWP6p1TAImQ": {
-   "likes": 7663,
+   "likes": 7665,
    "comments": 74,
-   "views": 75538,
+   "views": 75546,
    "shares": 1257
   },
   "DVzTw3QAbOx": {
-   "likes": 371,
+   "likes": 372,
    "comments": 16,
-   "views": 6785,
+   "views": 6792,
    "shares": 48
   },
   "DUALrwxADIL": {
    "likes": 2454,
    "comments": 45,
-   "views": 31406,
+   "views": 31408,
    "shares": 446
   },
   "DSBjvTzgKfi": {
-   "likes": 1964,
+   "likes": 1965,
    "comments": 24,
-   "views": 25055,
+   "views": 25058,
    "shares": 319
   },
   "DRBE5bVEbkS": {
    "likes": 40120,
    "comments": 416,
-   "views": 347584,
+   "views": 347588,
    "shares": 21680
   },
   "DQVkdMJgLsP": {
-   "likes": 157586,
+   "likes": 157581,
    "comments": 339,
-   "views": 1157675,
+   "views": 1157747,
    "shares": 19782
   }
  }
