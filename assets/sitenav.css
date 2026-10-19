@@ -1,6 +1,6 @@
 /* Universal site menu (see assets/sitenav.js). Default = for dark backgrounds.
    Add class "sn-ink" to the parent (or data-sitenav's container) for light backgrounds. */
-.sitenav { display:flex; align-items:center; gap:8px; font-family:'DM Mono', ui-monospace, monospace; font-size:14px; line-height:1; --sn-fg:#F1ECE2; --sn-bd:rgba(241,236,226,.55); --sn-bg:rgba(20,15,11,.3); }
+.sitenav { margin-left:auto; display:flex; align-items:center; gap:8px; font-family:'DM Mono', ui-monospace, monospace; font-size:14px; line-height:1; --sn-fg:#F1ECE2; --sn-bd:rgba(241,236,226,.55); --sn-bg:rgba(20,15,11,.3); }
 .sn-ink .sitenav, .sitenav.sn-ink { --sn-fg:#2B2620; --sn-bd:rgba(43,38,32,.55); --sn-bg:rgba(239,227,200,.45); }
 .sitenav .sn-pill { display:inline-flex; align-items:center; gap:6px; min-height:44px; padding:0 18px; border-radius:999px; border:1.5px solid var(--sn-bd); background:var(--sn-bg); color:var(--sn-fg); font:inherit; text-decoration:none; cursor:pointer; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); white-space:nowrap; text-transform:none; letter-spacing:0; font-weight:400; }
 .sitenav .sn-pill:hover, .sitenav .sn-btn[aria-expanded="true"] { background:var(--sn-fg); color:#151515; border-color:var(--sn-fg); }
