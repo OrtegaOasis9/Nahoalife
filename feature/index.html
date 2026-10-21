@@ -149,7 +149,6 @@
       <div class="stats" style="margin-top:36px" id="statStrip">
         <div class="stat p"><b data-stat="followers">15.6K</b><span class="mono">IG followers</span></div>
         <div class="stat y" data-needs="total_views" hidden><b data-stat="total_views"></b><span class="mono">total views on Instagram</span></div>
-        <div class="stat c" data-needs="top_views" hidden><b data-stat="top_views"></b><span class="mono">top feature</span></div>
       </div>
     </div>
     <div class="hero-photo">
@@ -325,7 +324,7 @@
       .forEach((c) => grid.appendChild(c));
     if (s.channel_views) total = Math.max(total, s.channel_views);
     if (total) {
-      [['total_views', total], ['top_views', top]].forEach(([k, v]) => {
+      [['total_views', total]].forEach(([k, v]) => {
         document.querySelector(`[data-stat="${k}"]`).textContent = k === 'total_views' ? floorFmt(v) + '+' : fmt(v);
         document.querySelector(`[data-needs="${k}"]`).hidden = false;
       });
