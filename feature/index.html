@@ -37,6 +37,7 @@
   .hero h1 { margin:20px 0 0; font-weight:800; font-size:clamp(96px, 16vw, 168px); line-height:.86; letter-spacing:-.04em; color:var(--cobalt); }
   .hero h1 .serif { letter-spacing:-.02em; color:var(--ink); }
   .hero p { margin:28px 0 0; max-width:540px; font-size:22px; line-height:1.45; }
+  .hero p.bio { max-width:62ch; font-size:clamp(17px, 1.5vw, 19px); line-height:1.6; }
   .hero-photo { flex:0 1 420px; position:relative; padding:24px; margin:0 auto; }
   .tape { position:absolute; top:0; left:50%; width:120px; height:34px; margin-left:-60px; background:var(--butter); opacity:.85; transform:rotate(-3deg); z-index:2; }
   .print { position:relative; background:#fff; padding:14px 14px 56px; transform:rotate(3deg); box-shadow:0 18px 40px rgba(21,21,21,.18); }
@@ -63,12 +64,6 @@
   .seen-text h2 .serif { color:var(--butter); }
   .seen .vid { flex:0 1 300px; }
 
-  /* about */
-  .about { background:var(--cobalt); color:var(--paper); }
-  .about .wrap { display:flex; flex-wrap:wrap; gap:40px; padding-top:80px; padding-bottom:80px; }
-  .about h2 { flex:0 1 300px; margin:0; font-weight:800; font-size:64px; line-height:.95; letter-spacing:-.03em; }
-  .about h2 .serif { color:var(--butter); }
-  .about p { flex:1 1 560px; margin:0; font-size:clamp(20px, 2.2vw, 25px); line-height:1.5; }
 
   /* features */
   .features { background:var(--cherry); color:#fff; }
@@ -150,7 +145,7 @@
     <div class="hero-text">
       <div class="sticker mono">content that moves music</div>
       <h1>nahoa<br><span class="serif">life</span></h1>
-      <p>Viral content that puts a spotlight on the artists I love, from household names to indie gems. Artists, labels and publicists: let's get your music in front of the people who'll love it.</p>
+      <p class="bio">Yo, I’m Nahoa, an LA-based artist and music content creator who shares album analyses (not ratings), artist spotlights, and live show reports. I’m passionate about discovering and promoting new music, especially hip-hop and jazz, as well as R&amp;B, folk, and experimental. Many of my videos get excellent engagement and even go viral (regardless of how large the artist is), because people appreciate how earnestly I talk about music, and also I’ve just developed a knack for writing and editing engaging short-form content. There are so many dope projects and shows that just need to reach the right audience, which is why I help to highlight fellow artists and performance spaces. I’m currently majoring in music industry at UCLA, and I go to see live music every week; I’d love to see you, your artist, or your venue next!</p>
       <div class="stats" style="margin-top:36px" id="statStrip">
         <div class="stat p"><b data-stat="followers">15.6K</b><span class="mono">IG followers</span></div>
         <div class="stat y" data-needs="total_views" hidden><b data-stat="total_views"></b><span class="mono">total views on Instagram</span></div>
@@ -179,13 +174,6 @@
       <video playsinline preload="none" poster="media/DUJVJSyiCsF.jpg" src="media/DUJVJSyiCsF.mp4"></video>
       <button class="play" aria-label="Play GRAMMYs feature"><span><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#C8322B"/></svg></span></button>
     </div>
-  </div>
-</section>
-
-<section class="about" id="about">
-  <div class="wrap">
-    <h2>about <span class="serif">the creator</span></h2>
-    <p>Yo, I’m Nahoa, an LA-based artist and music content creator who shares album analyses (not ratings), artist spotlights, and live show reports. I’m passionate about discovering and promoting new music, especially hip-hop and jazz, as well as R&amp;B, folk, and experimental. Many of my videos get excellent engagement and even go viral (regardless of how large the artist is), because people appreciate how earnestly I talk about music, and also I’ve just developed a knack for writing and editing engaging short-form content. There are so many dope projects and shows that just need to reach the right audience, which is why I help to highlight fellow artists and performance spaces. I’m currently majoring in music industry at UCLA, and I go to see live music every week; I’d love to see you, your artist, or your venue next!</p>
   </div>
 </section>
 
